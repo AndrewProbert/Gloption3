@@ -5,12 +5,12 @@ import numpy as np
 from tabulate import tabulate
 from tqdm import tqdm
 
-ticker_symbol = ['tsla']
+ticker_symbol = ['aapl']
 historical_data = []
 
 for i in ticker_symbol:
     ticker = yf.Ticker(i)
-    data = ticker.history(period="3000d", interval="1d")
+    data = ticker.history(period="1000d", interval="1d")
     historical_data.append(data)
 
 
@@ -343,7 +343,14 @@ for i in tqdm(range(len(historical_data[0]))):
 headers = ["Timestamp", "Open", "High", "Low", "Close", "Volume", "RSI", "RSIEMA Cross", "SMA/VWAP Cross", "Close Check", "MACD Cross", "KNN EMA X","Total", "Total Diff"]
  
 table = (tabulate(table_data, headers, tablefmt="grid"))
-print(table)
+print(table , "\n")
+
+if x == 1:
+    print("Still holding position")
+    print("Buy Price: ", buyPrice, " Buy Date: ", buyTime , "\n")
+
+
+
 
 
 headers = ["Buy Price", "Buy Time", "Sell Price", "Sell Time", "Profit"]
