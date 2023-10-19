@@ -1,0 +1,11 @@
+stock_symbols = ["SPY", "QQQ", "IWM", "DIA", "GLD", "SLV", "AAPL", "AMZN", "GOOG", "META", "TSLA", "NVDA", "MSFT", "JPM", "BAC", "WFC", "C", "V", "MA", "PYPL", "ADBE", "CRM", "NFLX", "DIS", "HD", 
+                 "MCD", "NKE", "SBUX", "KO", "PEP", "PG", "JNJ", "UNH", "PFE", "MRK", "ABBV", "CVS", "WMT", "TGT", "COST", "LOW", "HD", "TJX", "M", "AMT", "CCI", "PLD", "SPG", "EQIX", "DLR", 
+                 "PSA", "AVB", "EQR", "AIV", "UDR", "VTR", "O", "WY", "BXP", "SLG", "ARE", "HST", "HLT", "MAR", "H", "HGV", "IHG", "CCL", "RCL", "NCLH", "LUV", "UAL", "DAL", "AAL", "JBLU", "ALK", 
+                 "SAVE", "EXPE", "BKNG", "TRIP", "LYV", "SIX", "FUN", "PLNT", "SEAS", "CZR", "MGM", "WYNN", "LVS", "TGT", "WMT", "COST", "HD", "LOW", "TJX", "ROST", "BBY", "TSCO", "DG", "DLTR", "KR",
+                 "SOXL", "SOXS", "TQQQ", "SQQQ", "FNGU", "FNGD", "SPXL", "SPXS", "UDOW", "SDOW", "TNA", "TZA", "LABU", "LABD", "NUGT", "DUST", "JNUG", "JDST", "GUSH", "DRIP", "ERX", "ERY", "FAS", "FAZ",
+                 "UVXY", "TLT", "XLE", "XLF", "XLU", "XLK", "XLI", "XLB", "XLP", "XLV", "XLY", "XBI", "XOP", "XRT", "XHB", "XME", "XSD", "XSW", "XITK", "XNTK", "XWEB", "XNTK", "XWEB", "XNTK", "XWEB", 
+                 "BOIL", "USO", "GLDM", "AMD", "INTC", "MU", "QCOM", "TXN", "AVGO", "AMAT", "ADP", "ADSK", "ASML", "BIDU", "BIIB", "BMRN", "CDNS", "CELG", "CERN", "CHKP", "CTAS", "CTSH", "CTXS", "DLTR",
+                 "EA", "EBAY", "EXPE", "FAST", "FISV", "GILD", "HAS", "HSIC", "IDXX", "ILMN", "INCY", "INTU", "ISRG", "JBHT", "KLAC", "LRCX", "MAR", "MCHP", "MDLZ", "MNST", "MXIM", "MYL", "NTAP", "NTES",
+                 "XOM", "CVX", "GS", "UNP", "RTX", "BA", "MMM", "CAT", "IBM", "HON", "NKE", "MCD", "VZ", "JNJ", "PG", "WMT", "LMT", "COST", "GE", "LLY", "UTX", "ASML", "SMCI", "SCHW", "GDX", "EEM",
+                 "TNA", "EWZ", "FXI", "ARM", "LIN", "CSCO", "DHR", "INTU", "UPS", "USP", "BX", "ADP", "TMO", "AMGN", "MDT", "BLK", "PM", "ISRG", "PNC", "AMT", "CCI", "PLD", "SPG", "EQIX", "DLR", "PSA", 
+                  "UBER", "CVS", "ABNB", "BABA", "NIO", "SNAP", "PINS", "TWTR", "SQ", "ROKU", "ZM", "DOCU", "CRWD", "NET", "ZS", "OKTA", "MDB", "DDOG", "SNOW", "FSLY", "PINS", "TWLO", "ETSY", "FVRR"]

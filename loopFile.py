@@ -1,16 +1,21 @@
-from itertools import count
 import yfinance as yf
-import pandas as pd
 import numpy as np
 from tabulate import tabulate
 from tqdm import tqdm
+import sys
 
-ticker_symbol = ['spy']
+if len(sys.argv) < 2:
+    print("Please provide a stock symbol as an argument")
+    sys.exit(1)
+
+received_symbol = sys.argv[1]
+
+ticker_symbol = [received_symbol]
 historical_data = []
 
 for i in ticker_symbol:
     ticker = yf.Ticker(i)
-    data = ticker.history(period="6000d", interval="1d")
+    data = ticker.history(period="100d", interval="1d")
     historical_data.append(data)
 
 
@@ -280,7 +285,7 @@ sellTimeArray = []
 
 
 
-for i in tqdm(range(len(historical_data[0]))):
+for i in (range(len(historical_data[0]))):
     
 
     timestamp = historical_data[0].index[i]
@@ -335,29 +340,18 @@ for i in tqdm(range(len(historical_data[0]))):
 
 
 
-    table_data.append([timestamp, open, high, low, close, volume, rsi[i], rsiemaX, smaemaX, newClose, macdX, knnemaX ,total[i], totalDiff ])
-    progress = (i + 1) / len(historical_data[0]) * 100
-    
 
-
-headers = ["Timestamp", "Open", "High", "Low", "Close", "Volume", "RSI", "RSIEMA Cross", "SMA/VWAP Cross", "Close Check", "MACD Cross", "KNN EMA X","Total", "Total Diff"]
- 
-table = (tabulate(table_data, headers, tablefmt="grid"))
-print(table , "\n")
 
 if x == 1:
-    print("Still holding position")
-    print("Buy Price: ", buyPrice, " Buy Date: ", buyTime , "\n")
+    print("Open position", "Buy Price: ", buyPrice, " Buy Date: ", buyTime , "\n" )
+    print("Total Profit: ", sum(profitArray), "\n")
+else:
+    print("No open position", "\n")
+    print("Total Profit: ", sum(profitArray), "\n")
 
 
 
 
-
-headers = ["Buy Price", "Buy Time", "Sell Price", "Sell Time", "Profit"]
-data = [buyPriceArray, buyTimeArray, sellPriceArray, sellTimeArray, profitArray]
-print(tabulate(zip(*data), headers=headers))
-
-print("Total Profit: ", sum(profitArray))
 
 
 
