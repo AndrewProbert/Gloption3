@@ -15,7 +15,7 @@ stock_symbols = ["SPY", "QQQ", "IWM", "DIA", "GLD", "SLV", "AAPL", "AMZN", "GOOG
                  "EA", "EBAY", "EXPE", "FAST", "FISV", "GILD", "HAS", "HSIC", "IDXX", "ILMN", "INCY", "INTU", "ISRG", "JBHT", "KLAC", "LRCX", "MAR", "MCHP", "MDLZ", "MNST", "MXIM", "MYL", "NTAP", "NTES",
                  "XOM", "CVX", "GS", "UNP", "RTX", "BA", "MMM", "CAT", "IBM", "HON", "NKE", "MCD", "VZ", "JNJ", "PG", "WMT", "LMT", "COST", "GE", "LLY", "UTX", "ASML", "SMCI", "SCHW", "GDX", "EEM",
                  "TNA", "EWZ", "FXI", "ARM", "LIN", "CSCO", "DHR", "INTU", "UPS", "USP", "BX", "ADP", "TMO", "AMGN", "MDT", "BLK", "PM", "ISRG", "PNC", "AMT", "CCI", "PLD", "SPG", "EQIX", "DLR", "PSA", 
-                  "UBER", "CVS", "ABNB", "BABA", "NIO", "SNAP", "PINS", "TWTR", "SQ", "ROKU", "ZM", "DOCU", "CRWD", "NET", "ZS", "OKTA", "MDB", "DDOG", "SNOW", "FSLY", "PINS", "TWLO", "ETSY", "FVRR"]
+                  "UBER", "CVS", "ABNB", "BABA", "NIO", "SNAP", "TSM", "SQ", "ROKU", "ZM", "DOCU", "CRWD", "NET", "ZS", "OKTA", "MDB", "DDOG", "SNOW", "FSLY", "PINS", "TWLO", "ETSY", "FVRR"]
 
 allProfitArray = []
 allBuyPriceArray = []
