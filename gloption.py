@@ -10,7 +10,7 @@ historical_data = []
 
 for i in ticker_symbol:
     ticker = yf.Ticker(i)
-    data = ticker.history(period="6000d", interval="1d")
+    data = ticker.history(period="300d", interval="1d")
     historical_data.append(data)
 
 
