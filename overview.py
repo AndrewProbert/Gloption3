@@ -2,6 +2,7 @@ import subprocess
 import sys
 from tqdm import tqdm  # Import tqdm for a progress bar
 import pandas as pd
+import concurrent.futures
 
 path = "loopFile.py"  # Path to the file to be executed
 
@@ -9,13 +10,13 @@ stock_symbols = ['SPY', 'QQQ', 'IWM', 'DIA', 'GLD', 'SLV', 'AAPL', 'AMZN', 'GOOG
                  'PYPL', 'ADBE', 'CRM', 'NFLX', 'DIS', 'HD', 'MCD', 'NKE', 'SBUX', 'KO', 'PEP', 'PG', 'JNJ', 'UNH', 'PFE', 'MRK', 'ABBV', 'CVS', 'WMT', 
                  'TGT', 'COST', 'LOW', 'TJX', 'M', 'AMT', 'CCI', 'PLD', 'SPG', 'EQIX', 'DLR', 'PSA', 'AVB', 'EQR', 'AIV', 'UDR', 'VTR', 'O', 'WY', 'BXP', 
                  'SLG', 'ARE', 'HST', 'HLT', 'MAR', 'H', 'HGV', 'IHG', 'CCL', 'RCL', 'NCLH', 'LUV', 'UAL', 'DAL', 'AAL', 'JBLU', 'ALK', 'SAVE', 'EXPE', 
-                 'BKNG', 'TRIP', 'LYV', 'SIX', 'FUN', 'PLNT', 'SEAS', 'CZR', 'MGM', 'WYNN', 'LVS', 'ROST', 'BBY', 'TSCO', 'DG', 'DLTR', 'KR', 'SOXL', 
+                 'BKNG', 'TRIP', 'SIX', 'FUN', 'PLNT', 'SEAS', 'CZR', 'MGM', 'WYNN', 'LVS', 'ROST', 'BBY', 'TSCO', 'DG', 'DLTR', 'KR', 'SOXL', 
                  'SOXS', 'TQQQ', 'SQQQ', 'FNGU', 'FNGD', 'SPXL', 'SPXS', 'UDOW', 'SDOW', 'TNA', 'TZA', 'LABU', 'LABD', 'NUGT', 'DUST', 'JNUG', 'JDST', 
                  'GUSH', 'DRIP', 'ERX', 'ERY', 'FAS', 'FAZ', 'UVXY', 'TLT', 'XLE', 'XLF', 'XLU', 'XLK', 'XLI', 'XLB', 'XLP', 'XLV', 'XLY', 'XBI', 'XOP', 
                  'XRT', 'XHB', 'XME', 'XSD', 'XSW', 'XITK', 'XNTK', 'XWEB', 'BOIL', 'USO', 'GLDM', 'AMD', 'INTC', 'MU', 'QCOM', 'TXN', 'AVGO', 'AMAT', 'ADP', 
-                 'ADSK', 'ASML', 'BIDU', 'BIIB', 'BMRN', 'CDNS', 'CELG', 'CERN', 'CHKP', 'CTAS', 'CTSH', 'CTXS', 'EA', 'EBAY', 'FAST', 'FISV', 'GILD', 'HAS', 
+                 'ADSK', 'ASML', 'BIDU', 'BIIB', 'BMRN', 'CDNS', 'CELG', 'CERN', 'CHKP', 'CTAS', 'CTSH', 'CTXS', 'EA', 'EBAY', 'FAST', 'GILD', 'HAS', 
                  'HSIC', 'IDXX', 'ILMN', 'INCY', 'INTU', 'ISRG', 'JBHT', 'KLAC', 'LRCX', 'MCHP', 'MDLZ', 'MNST', 'MXIM', 'MYL', 'NTAP', 'NTES', 'XOM', 'CVX', 'GS', 
-                 'UNP', 'RTX', 'BA', 'MMM', 'CAT', 'IBM', 'HON', 'VZ', 'LMT', 'GE', 'LLY', 'UTX', 'SMCI', 'SCHW', 'GDX', 'EEM', 'EWZ', 'FXI', 'ARM', 'LIN', 'CSCO', 
+                 'UNP', 'RTX', 'BA', 'MMM', 'CAT', 'IBM', 'HON', 'VZ', 'LMT', 'GE', 'LLY', 'SMCI', 'SCHW', 'GDX', 'EEM', 'EWZ', 'FXI', 'ARM', 'LIN', 'CSCO', 
                  'DHR', 'UPS', 'USP', 'BX', 'TMO', 'AMGN', 'MDT', 'BLK', 'PM', 'PNC', 'UBER', 'ABNB', 'BABA', 'NIO', 'SNAP', 'TSM', 'SQ', 'ROKU', 'ZM', 'DOCU', 'CRWD', 
                  'NET', 'ZS', 'OKTA', 'MDB', 'DDOG', 'SNOW', 'FSLY', 'PINS', 'TWLO', 'ETSY', 'FVRR', 'BRK-B', 'GOOGL', 'ACN', 'ABT', 'TMUS', 'COP', 'MS', 'BMY', 'NOW', 
                  'SPGI', 'AXP', 'DE', 'TM', 'ELV', 'NEE', 'SYK', 'MMC', 'VRTX', 'PGR', 'CI', 'REGN', 'CB', 'SLB', 'ADI', 'ETN', 'EOG', 'CME', 'PANW', 'ZTS', 'MO', 'BDX', 
@@ -25,10 +26,10 @@ allProfitArray = []
 allBuyPriceArray = []
 allBuyDateArray = []
 
-for i in range(len(stock_symbols)):
-    result = subprocess.run([sys.executable, path, stock_symbols[i]], capture_output=True, text=True)  # Execute the file with the stock symbol as an argument
-    print("Finished processing " + stock_symbols[i])  # Print a message when the file is finished processing
-    print("Progress: " + str(i + 1) + "/" + str(len(stock_symbols)))  # Print the progress of the loop
+# Define a function to execute the loopFile.py file for a given stock symbol
+def process_stock_symbol(stock_symbol):
+    result = subprocess.run([sys.executable, path, stock_symbol], capture_output=True, text=True)  # Execute the file with the stock symbol as an argument
+    print("Finished processing " + stock_symbol)  # Print a message when the file is finished processing
 
     # Check the exit code to see if file 2 ran successfully
     if result.returncode == 0:
@@ -66,7 +67,11 @@ for i in range(len(stock_symbols)):
     else:
         print("File 2 encountered an error or didn't run successfully.")
 
-
+# Use a thread pool to execute the process_stock_symbol function for each stock symbol
+with concurrent.futures.ThreadPoolExecutor(max_workers=3) as executor:
+    futures = [executor.submit(process_stock_symbol, stock_symbol) for stock_symbol in stock_symbols]
+    for future in concurrent.futures.as_completed(futures):
+        pass
 
 # Create a dictionary with the data
 data = {
@@ -93,4 +98,3 @@ df = df.reset_index(drop=True)
 # Save the sorted DataFrame to a properly formatted text file
 with open("output.txt", "w") as f:
     f.write(df.to_string(index=False))
-

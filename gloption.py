@@ -5,7 +5,8 @@ import numpy as np
 from tabulate import tabulate
 from tqdm import tqdm
 
-ticker_symbol = ['spy']
+
+ticker_symbol = ['pgr']
 historical_data = []
 
 for i in ticker_symbol:
@@ -97,11 +98,6 @@ def smavwapCross(sma, vwap):
         return 0
     
 
-def closeCheck(prevClose, Close):
-    if Close > prevClose:
-        return 1
-    else:
-        return 0
 
 
 def calcMACD(data, short_period=12, long_period=26, signal_period=9):
@@ -130,56 +126,6 @@ def macdCross(macd, signal):
     else:
         return 0
 
-
-def calcSuperTrend(data, atr_period=14, multiplier=1.0):
-    atr = calcATR(data, atr_period)
-    superTrend = []
-    isUpTrend = True
-    upTrendValue = 0.0
-    downTrendValue = 0.0
-
-    for i in range(len(data)):
-        if i == 0:
-            superTrend.append(0.0)
-        else:
-            prevSuperTrend = superTrend[i - 1]
-            prevClose = data['Close'][i - 1]
-
-            upTrendValue = prevClose - atr[i] * multiplier
-            downTrendValue = prevClose + atr[i] * multiplier
-
-            if isUpTrend:
-                if data['Close'][i] <= downTrendValue:
-                    isUpTrend = False
-                    superTrend.append(downTrendValue)
-                else:
-                    superTrend.append(max(upTrendValue, prevSuperTrend))
-            else:
-                if data['Close'][i] >= upTrendValue:
-                    isUpTrend = True
-                    superTrend.append(upTrendValue)
-                else:
-                    superTrend.append(min(downTrendValue, prevSuperTrend))
-
-    return superTrend
-
-def calcATR(data, period=14):
-    tr = [0.0]
-    atr = [0.0]
-
-    for i in range(1, len(data)):
-        high = data['High'][i]
-        low = data['Low'][i]
-        close = data['Close'][i]
-
-        tr_value = max(high - low, abs(high - close), abs(low - close))
-        tr.append(tr_value)
-
-        if i >= period:
-            atr_value = np.mean(tr[i - period + 1 : i + 1])
-            atr.append(atr_value)
-
-    return atr
 
 
 
@@ -289,7 +235,6 @@ for i in tqdm(range(len(historical_data[0]))):
     low = historical_data[0]['Low'][i]
     close = historical_data[0]['Close'][i]
     volume = historical_data[0]['Volume'][i]
-    prev_close = historical_data[0]['Close'][i - 1]
 
     rsi = calcRSI(historical_data[0]['Close'])
     rsiEMA = calcRSIEMA(rsi)
@@ -299,7 +244,6 @@ for i in tqdm(range(len(historical_data[0]))):
     vwap = calcVWAP(historical_data[0]['Close'], historical_data[0]['Volume'])
     smaemaX = smavwapCross(sma, vwap)
 
-    newClose = closeCheck(prev_close, close)
     
     macd, signal = calcMACD(historical_data[0]['Close'])
     macdX = macdCross(macd, signal)
@@ -335,12 +279,12 @@ for i in tqdm(range(len(historical_data[0]))):
 
 
 
-    table_data.append([timestamp, open, high, low, close, volume, rsi[i], rsiemaX, smaemaX, newClose, macdX, knnemaX ,total[i], totalDiff ])
+    table_data.append([timestamp, open, high, low, close, volume, rsiemaX, smaemaX, macdX, knnemaX ,total[i], totalDiff ])
     progress = (i + 1) / len(historical_data[0]) * 100
     
 
 
-headers = ["Timestamp", "Open", "High", "Low", "Close", "Volume", "RSI", "RSIEMA Cross", "SMA/VWAP Cross", "Close Check", "MACD Cross", "KNN EMA X","Total", "Total Diff"]
+headers = ["Timestamp", "Open", "High", "Low", "Close", "Volume", "RSIEMA Cross", "SMA/VWAP Cross", "MACD Cross", "KNN EMA X","Total", "Total Diff"]
  
 table = (tabulate(table_data, headers, tablefmt="grid"))
 print(table , "\n")
