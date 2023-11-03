@@ -6,7 +6,7 @@ from tabulate import tabulate
 from tqdm import tqdm
 
 
-ticker_symbol = ['pgr']
+ticker_symbol = ['tslq']
 historical_data = []
 
 for i in ticker_symbol:

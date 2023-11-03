@@ -21,7 +21,7 @@ stock_symbols = ['SPY', 'QQQ', 'IWM', 'DIA', 'GLD', 'SLV', 'AAPL', 'AMZN', 'GOOG
                  'NET', 'ZS', 'OKTA', 'MDB', 'DDOG', 'SNOW', 'FSLY', 'PINS', 'TWLO', 'ETSY', 'FVRR', 'BRK-B', 'GOOGL', 'ACN', 'ABT', 'TMUS', 'COP', 'MS', 'BMY', 'NOW', 
                  'SPGI', 'AXP', 'DE', 'TM', 'ELV', 'NEE', 'SYK', 'MMC', 'VRTX', 'PGR', 'CI', 'REGN', 'CB', 'SLB', 'ADI', 'ETN', 'EOG', 'CME', 'PANW', 'ZTS', 'MO', 'BDX', 
                  'NOC', 'BSX', 'SNPS', 'SO', 'FI', 'WM', 'LULU', 'FDX', 'DELL', 'MSI', 'KHC', 'PLTR', 'MRNA', 'TTWO', 'HYG', 'IVV', 'LQD', 'IEF', 'SMH', 'ARKK', 'SOXX', 
-                 'QUAL', 'XLRE', 'TSLQ', 'MSTR']
+                 'QUAL', 'XLRE', 'MSTR']
 allProfitArray = []
 allBuyPriceArray = []
 allBuyDateArray = []
