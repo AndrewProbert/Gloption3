@@ -1,294 +1,294 @@
 Stock Symbol      Profit            Buy Price                  Buy Date
-         PGR   46.368851   157.2949981689453  2023-11-02 00:00:00-04:00
-          EA   14.104225  129.58999633789062  2023-11-02 00:00:00-04:00
-        COST   98.907074   557.5449829101562  2023-11-02 00:00:00-04:00
-         TZA   12.506720  35.640098571777344  2023-11-02 00:00:00-04:00
+         XOM   36.065102  106.87000274658203  2023-11-03 00:00:00-04:00
+        META  148.380005  312.31500244140625  2023-11-03 00:00:00-04:00
+        COST   98.725952    555.969970703125  2023-11-02 00:00:00-04:00
+         TZA    8.942625  34.599998474121094  2023-11-02 00:00:00-04:00
+          EA   15.424225  128.27999877929688  2023-11-02 00:00:00-04:00
         SDOW    3.609509   26.84000015258789  2023-11-01 00:00:00-04:00
-        LABD    4.355211   25.06999969482422  2023-11-01 00:00:00-04:00
-         FAZ    2.829241  21.229999542236328  2023-11-01 00:00:00-04:00
+        LABD    4.355217   25.06999969482422  2023-11-01 00:00:00-04:00
+         FAZ    1.011137  21.229999542236328  2023-11-01 00:00:00-04:00
+        AMZN   32.459984              125.75  2023-10-30 00:00:00-04:00
+         COP   30.656853  118.13999938964844  2023-10-30 00:00:00-04:00
+       GOOGL   30.239998  124.45999908447266  2023-10-30 00:00:00-04:00
+         MDB  207.835037  336.29998779296875  2023-10-30 00:00:00-04:00
+          ZS   44.610016  156.80999755859375  2023-10-30 00:00:00-04:00
+        AMGN   43.540848  263.19000244140625  2023-10-30 00:00:00-04:00
+        SMCI  201.300018   236.6199951171875  2023-10-30 00:00:00-04:00
+         LLY  236.893799   565.7100219726562  2023-10-30 00:00:00-04:00
          USO    9.519997   76.05000305175781  2023-10-30 00:00:00-04:00
-       GOOGL   30.239998  122.16999816894531  2023-10-27 00:00:00-04:00
-        SMCI  201.300018  241.39999389648438  2023-10-27 00:00:00-04:00
-         DHR   16.519119  51.560001373291016  2023-10-27 00:00:00-04:00
-        GOOG   32.459984   123.4000015258789  2023-10-27 00:00:00-04:00
-         COP   30.656830  117.80000305175781  2023-10-27 00:00:00-04:00
-         CAT   85.855957  238.55999755859375  2023-10-27 00:00:00-04:00
-         ADI   20.150406   55.83000183105469  2023-10-27 00:00:00-04:00
-          MO   23.245140  125.98999786376953  2023-10-27 00:00:00-04:00
-         NOC   58.914917  473.07000732421875  2023-10-27 00:00:00-04:00
-         LLY  233.035583     560.22998046875  2023-10-27 00:00:00-04:00
-         IVV   44.949989  134.42999267578125  2023-10-27 00:00:00-04:00
+         XOP   29.940735  143.39999389648438  2023-10-30 00:00:00-04:00
+         XLE   24.109535   84.91000366210938  2023-10-30 00:00:00-04:00
+        GUSH   15.329006  36.369998931884766  2023-10-30 00:00:00-04:00
+         MAR   84.027649  188.08999633789062  2023-10-30 00:00:00-04:00
+         JPM   37.382965   137.4199981689453  2023-10-30 00:00:00-04:00
+        TTWO   44.949989  133.35000610351562  2023-10-30 00:00:00-04:00
         INTU  127.107758   479.5199890136719  2023-10-27 00:00:00-04:00
-        META  125.480026   296.7300109863281  2023-10-27 00:00:00-04:00
-        AVGO  350.747925   838.3599853515625  2023-10-27 00:00:00-04:00
-         XOP   29.940735  143.89999389648438  2023-10-27 00:00:00-04:00
-         XLE   24.109535   84.62999725341797  2023-10-27 00:00:00-04:00
-        GUSH   15.329006  36.630001068115234  2023-10-27 00:00:00-04:00
-         MAR   83.750519  185.27000427246094  2023-10-27 00:00:00-04:00
-        MSFT   38.152939  135.69000244140625  2023-10-27 00:00:00-04:00
-        SNPS  146.560059   453.5400085449219  2023-10-26 00:00:00-04:00
-        CERN   88.259995  230.44000244140625  2023-10-26 00:00:00-04:00
-         JNJ   21.590332               525.0  2023-10-24 00:00:00-04:00
-         SPY   91.316406                 None                       NaT
-         QQQ   17.110245                 None                       NaT
-         IWM   99.432312                 None                       NaT
-         DIA   89.278259                 None                       NaT
+        CRWD   37.359978  172.82000732421875  2023-10-27 00:00:00-04:00
+         UNH   34.539673               525.0  2023-10-24 00:00:00-04:00
+         SPY   17.110275                 None                       NaT
+         QQQ   92.598877                 None                       NaT
+         IWM  101.172394                 None                       NaT
+         DIA   89.278381                 None                       NaT
          GLD    7.580000                 None                       NaT
          SLV   26.089966                 None                       NaT
-        AAPL   36.479988                 None                       NaT
-        AMZN   57.138687                 None                       NaT
-        TSLA   73.809998                 None                       NaT
-        NVDA  290.465576                 None                       NaT
-         JPM   76.759125                 None                       NaT
-         BAC    0.291561                 None                       NaT
-         WFC    1.225178                 None                       NaT
-           C   72.619003                 None                       NaT
-           V    2.894321                 None                       NaT
-          MA  123.874176                 None                       NaT
+        AAPL   57.768600                 None                       NaT
+        GOOG   36.479988                 None                       NaT
+        TSLA  293.455566                 None                       NaT
+        NVDA   83.750000                 None                       NaT
+        MSFT   76.759125                 None                       NaT
+         BAC    0.291557                 None                       NaT
+         WFC    1.214352                 None                       NaT
+           C    4.298031                 None                       NaT
+           V   72.619003                 None                       NaT
+          MA  126.154083                 None                       NaT
         PYPL    0.000000                 None                       NaT
-        ADBE  240.300018                 None                       NaT
+        ADBE  242.110016                 None                       NaT
          CRM   94.029999                 None                       NaT
-        NFLX  282.419952                 None                       NaT
+        NFLX  271.329956                 None                       NaT
          DIS    5.290001                 None                       NaT
-          HD   51.686340                 None                       NaT
-         MCD   60.359940                 None                       NaT
-         NKE   26.813377                 None                       NaT
-        SBUX   25.618843                 None                       NaT
-          KO    5.644791                 None                       NaT
-         PEP   21.917175                 None                       NaT
+          HD   50.255157                 None                       NaT
+         MCD   54.344009                 None                       NaT
+         NKE   29.814819                 None                       NaT
+        SBUX   25.863647                 None                       NaT
+          KO    5.241093                 None                       NaT
+         PEP   21.917221                 None                       NaT
           PG   24.708328                 None                       NaT
-         UNH   15.909409                 None                       NaT
-         PFE    0.000000                 None                       NaT
-         MRK   31.780220                 None                       NaT
-        ABBV   31.025650                 None                       NaT
-         CVS    4.436729                 None                       NaT
-         WMT   28.706039                 None                       NaT
-         TGT   22.710098                 None                       NaT
-         LOW   48.674774                 None                       NaT
-         TJX   19.879890                 None                       NaT
-           M    9.846024                 None                       NaT
-         AMT    8.706564                 None                       NaT
+         JNJ   14.354156                 None                       NaT
+         PFE   -0.893967                 None                       NaT
+         MRK   33.595558                 None                       NaT
+        ABBV   25.507004                 None                       NaT
+         CVS    4.802628                 None                       NaT
+         WMT   26.125565                 None                       NaT
+         TGT   20.016098                 None                       NaT
+         LOW   48.431213                 None                       NaT
+         TJX   19.869873                 None                       NaT
+           M    8.706562                 None                       NaT
+         AMT    9.846054                 None                       NaT
          CCI    8.755539                 None                       NaT
-         PLD   45.701736                 None                       NaT
-         SPG   24.168610                 None                       NaT
+         PLD   45.701714                 None                       NaT
+         SPG   24.168579                 None                       NaT
         EQIX  340.734253                 None                       NaT
-         DLR    3.877472                 None                       NaT
-         PSA   11.682129                 None                       NaT
-         AVB   16.701157                 None                       NaT
-         EQR    4.717407                 None                       NaT
-         AIV    2.230000                 None                       NaT
-         UDR    4.469135                 None                       NaT
-         VTR    5.708107                 None                       NaT
-           O    9.862442                 None                       NaT
-          WY    5.747929                 None                       NaT
-         BXP    8.417553                 None                       NaT
-         SLG   10.259048                 None                       NaT
-         ARE    9.204182                 None                       NaT
-         HST    0.164810                 None                       NaT
-         HLT   42.335129                 None                       NaT
-           H   11.350002                 None                       NaT
-         HGV   38.183632                 None                       NaT
-         IHG   26.218578                 None                       NaT
+         DLR   11.682114                 None                       NaT
+         PSA   -0.704681                 None                       NaT
+         AVB   17.978348                 None                       NaT
+         EQR    4.338112                 None                       NaT
+         AIV    2.220022                 None                       NaT
+         UDR    4.269718                 None                       NaT
+         VTR    8.020256                 None                       NaT
+           O    5.708099                 None                       NaT
+          WY    5.747923                 None                       NaT
+         BXP    9.776180                 None                       NaT
+         SLG    8.882551                 None                       NaT
+         ARE   10.259064                 None                       NaT
+         HST    0.164816                 None                       NaT
+         HLT   42.155884                 None                       NaT
+           H   45.733162                 None                       NaT
+         HGV   14.549999                 None                       NaT
+         IHG   25.503662                 None                       NaT
          CCL    4.600001                 None                       NaT
          RCL   31.209991                 None                       NaT
         NCLH    3.290001                 None                       NaT
-         LUV    4.389679                 None                       NaT
-         UAL   22.320004                 None                       NaT
+         LUV    4.389675                 None                       NaT
+         UAL   22.450005                 None                       NaT
          DAL   14.449034                 None                       NaT
-         AAL    2.879999                 None                       NaT
+         AAL    2.939999                 None                       NaT
         JBLU    2.450000                 None                       NaT
-         ALK    7.690002                 None                       NaT
-        SAVE    0.424610                 None                       NaT
-        EXPE 1577.819824                 None                       NaT
-        BKNG   21.419991                 None                       NaT
+         ALK    7.620003                 None                       NaT
+        SAVE    0.424606                 None                       NaT
+        EXPE   21.789986                 None                       NaT
+        BKNG 1595.669922                 None                       NaT
         TRIP    0.000000                 None                       NaT
-         SIX    5.875488                 None                       NaT
-         FUN   11.589998                 None                       NaT
+         SIX   11.589998                 None                       NaT
+         FUN    5.875488                 None                       NaT
         PLNT   22.889992                 None                       NaT
-        SEAS   16.945000                 None                       NaT
-         CZR    8.820004                 None                       NaT
-         MGM   14.119682                 None                       NaT
-        WYNN   71.120323                 None                       NaT
+        SEAS   10.440002                 None                       NaT
+         CZR   17.044998                 None                       NaT
+         MGM   14.669590                 None                       NaT
+        WYNN   70.320320                 None                       NaT
          LVS   16.065910                 None                       NaT
-        ROST   34.346802                 None                       NaT
-         BBY   17.249374                 None                       NaT
-        TSCO   54.944046                 None                       NaT
-          DG   25.617508                 None                       NaT
-        DLTR    4.600006                 None                       NaT
+        ROST   34.346794                 None                       NaT
+         BBY   17.249382                 None                       NaT
+        TSCO   60.221237                 None                       NaT
+          DG    8.580002                 None                       NaT
+        DLTR   27.454712                 None                       NaT
           KR    2.797150                 None                       NaT
-        SOXL   18.255548                 None                       NaT
-        SOXS   14.125587                 None                       NaT
-        TQQQ   24.698833                 None                       NaT
-        SQQQ   14.062542                 None                       NaT
-        FNGU  111.778015                 None                       NaT
+        SOXL   22.169857                 None                       NaT
+        SOXS   21.058342                 None                       NaT
+        TQQQ   24.953836                 None                       NaT
+        SQQQ  113.350006                 None                       NaT
+        FNGU    7.674835                 None                       NaT
         FNGD   23.419998                 None                       NaT
-        SPXL   38.502785                 None                       NaT
-        SPXS    2.832857                 None                       NaT
-        UDOW   33.080509                 None                       NaT
+        SPXL    2.214077                 None                       NaT
+        SPXS   38.502800                 None                       NaT
+        UDOW   33.080532                 None                       NaT
          TNA    8.264851                 None                       NaT
-        LABU    0.000000                 None                       NaT
+        LABU   -0.568999                 None                       NaT
         NUGT   19.412022                 None                       NaT
         DUST    0.000000                 None                       NaT
-        JNUG   12.509415                 None                       NaT
+        JNUG   12.509418                 None                       NaT
         JDST    0.000000                 None                       NaT
-        DRIP    2.688949                 None                       NaT
-         ERX   31.623871                 None                       NaT
-         ERY    1.803974                 None                       NaT
+        DRIP    2.688950                 None                       NaT
+         ERX   31.323868                 None                       NaT
+         ERY    1.803972                 None                       NaT
          FAS    9.315826                 None                       NaT
         UVXY    0.000000                 None                       NaT
-         TLT    9.814484                 None                       NaT
-         XLF    2.041451                 None                       NaT
-         XLU    3.721321                 None                       NaT
-         XLK   51.697861                 None                       NaT
-         XLI   24.537651                 None                       NaT
-         XLB    7.087318                 None                       NaT
-         XLP    6.241241                 None                       NaT
-         XLV   19.836075                 None                       NaT
-         XLY   39.650742                 None                       NaT
+         TLT    9.814476                 None                       NaT
+         XLF    2.041454                 None                       NaT
+         XLU    2.941765                 None                       NaT
+         XLK   52.187866                 None                       NaT
+         XLI    7.087296                 None                       NaT
+         XLB   24.537613                 None                       NaT
+         XLP    6.241234                 None                       NaT
+         XLV   38.227432                 None                       NaT
+         XLY   19.895096                 None                       NaT
          XBI    9.589767                 None                       NaT
-         XRT    5.218681                 None                       NaT
-         XHB   27.147297                 None                       NaT
-         XME   14.502766                 None                       NaT
-         XSD   87.535553                 None                       NaT
-         XSW   33.414749                 None                       NaT
-        XITK   44.149490                 None                       NaT
-        XNTK   44.593521                 None                       NaT
+         XRT    5.218697                 None                       NaT
+         XHB   27.147266                 None                       NaT
+         XME   84.732529                 None                       NaT
+         XSD   14.502762                 None                       NaT
+         XSW   35.751106                 None                       NaT
+        XITK   47.365623                 None                       NaT
+        XNTK   44.953522                 None                       NaT
         XWEB   17.261002                 None                       NaT
         BOIL    0.000000                 None                       NaT
         GLDM    5.749985                 None                       NaT
          AMD   51.860008                 None                       NaT
         INTC   19.056665                 None                       NaT
-          MU   31.590416                 None                       NaT
+          MU   31.590427                 None                       NaT
         QCOM   -2.646362                 None                       NaT
-         TXN   36.153442                 None                       NaT
-        AMAT   84.795258                 None                       NaT
+         TXN   36.153488                 None                       NaT
+        AVGO  386.507568                 None                       NaT
+        AMAT   85.085251                 None                       NaT
          ADP   11.024231                 None                       NaT
         ADSK   24.550003                 None                       NaT
-        ASML  306.072266                 None                       NaT
+        ASML  306.074219                 None                       NaT
         BIDU  115.820007                 None                       NaT
         BIIB   78.629974                 None                       NaT
         BMRN    0.000000                 None                       NaT
         CDNS    0.000000                 None                       NaT
-        CELG    8.959999                 None                       NaT
+        CELG    7.729996                 None                       NaT
+        CERN  107.559998                 None                       NaT
         CHKP   32.950005                 None                       NaT
         CTAS    0.000000                 None                       NaT
-        CTSH  106.609436                 None                       NaT
-        CTXS   10.975266                 None                       NaT
-        EBAY    7.408318                 None                       NaT
-        FAST   16.060215                 None                       NaT
-        GILD   16.798454                 None                       NaT
-         HAS    9.463173                 None                       NaT
+        CTSH  106.609283                 None                       NaT
+        CTXS   10.525257                 None                       NaT
+        EBAY    7.007259                 None                       NaT
+        FAST   16.060211                 None                       NaT
+        GILD   16.798439                 None                       NaT
+         HAS    9.463177                 None                       NaT
         HSIC    5.619995                 None                       NaT
-        IDXX  231.160004                 None                       NaT
+        IDXX  225.059998                 None                       NaT
         ILMN   23.919998                 None                       NaT
-        INCY    5.480003                 None                       NaT
+        INCY    4.340004                 None                       NaT
         ISRG   83.229996                 None                       NaT
         JBHT   31.500427                 None                       NaT
-        KLAC  261.149567                 None                       NaT
-        LRCX  296.941895                 None                       NaT
-        MCHP   23.065014                 None                       NaT
+        KLAC  261.149597                 None                       NaT
+        LRCX  294.616943                 None                       NaT
+        MCHP   25.214352                 None                       NaT
         MDLZ    0.000000                 None                       NaT
         MNST    0.000000                 None                       NaT
-        MXIM   13.654289                 None                       NaT
-         MYL   19.429996                 None                       NaT
-        NTAP   13.749100                 None                       NaT
-        NTES   65.044289                 None                       NaT
-         XOM   36.395119                 None                       NaT
-         CVX   32.937363                 None                       NaT
-          GS   10.672607                 None                       NaT
-         UNP   30.755615                 None                       NaT
-         RTX   23.230713                 None                       NaT
+        MXIM   15.179424                 None                       NaT
+         MYL   18.944996                 None                       NaT
+        NTAP   13.809113                 None                       NaT
+        NTES   65.044296                 None                       NaT
+         CVX   33.024200                 None                       NaT
+          GS    4.362000                 None                       NaT
+         UNP   28.688950                 None                       NaT
+         RTX   22.671143                 None                       NaT
           BA  114.250000                 None                       NaT
          MMM    1.130241                 None                       NaT
+         CAT   82.815933                 None                       NaT
          IBM   31.796387                 None                       NaT
          HON   18.753448                 None                       NaT
           VZ    2.274071                 None                       NaT
          LMT   70.880829                 None                       NaT
-          GE   55.449474                 None                       NaT
+          GE   53.041523                 None                       NaT
         SCHW   15.430359                 None                       NaT
-         GDX    7.830172                 None                       NaT
+         GDX    7.485996                 None                       NaT
          EEM    5.533958                 None                       NaT
          EWZ    0.000000                 None                       NaT
-         FXI    9.139692                 None                       NaT
+         FXI    8.840012                 None                       NaT
          ARM    3.391235                 None                       NaT
-         LIN  133.000214                 None                       NaT
-        CSCO    8.202667                 None                       NaT
-         UPS   31.120285                 None                       NaT
-         USP    0.000000                 None                       NaT
-          BX    0.000000                 None                       NaT
-         TMO   23.254494                 None                       NaT
-        AMGN   53.243713                 None                       NaT
-         MDT    0.000000                 None                       NaT
-         BLK    0.000000                 None                       NaT
-          PM    0.000000                 None                       NaT
-         PNC    0.000000                 None                       NaT
-        UBER   14.417892                 None                       NaT
-        ABNB    0.000000                 None                       NaT
-        BABA    0.000000                 None                       NaT
+         LIN  132.241089                 None                       NaT
+        CSCO   17.204285                 None                       NaT
+         DHR    0.000000                 None                       NaT
+         UPS    3.138611                 None                       NaT
+         USP   31.120270                 None                       NaT
+          BX   23.254494                 None                       NaT
+         TMO   63.453186                 None                       NaT
+         MDT    9.661179                 None                       NaT
+         BLK  142.108887                 None                       NaT
+          PM   14.417900                 None                       NaT
+         PNC   17.577179                 None                       NaT
+        UBER   20.539999                 None                       NaT
+        ABNB   57.124992                 None                       NaT
+        BABA   10.220001                 None                       NaT
          NIO    0.000000                 None                       NaT
-        SNAP    0.000000                 None                       NaT
-         TSM    0.000000                 None                       NaT
-          SQ   24.879875                 None                       NaT
-        ROKU   18.429993                 None                       NaT
-          ZM    0.000000                 None                       NaT
-        DOCU    0.000000                 None                       NaT
-        CRWD   -1.300003                 None                       NaT
-         NET    0.000000                 None                       NaT
-          ZS    0.000000                 None                       NaT
-        OKTA    0.000000                 None                       NaT
-         MDB    0.000000                 None                       NaT
-        DDOG    0.000000                 None                       NaT
-        SNOW    0.000000                 None                       NaT
-        FSLY    0.000000                 None                       NaT
-        PINS    0.000000                 None                       NaT
-        TWLO    0.000000                 None                       NaT
-        ETSY    0.000000                 None                       NaT
-        FVRR    0.000000                 None                       NaT
-       BRK-B   10.359999                 None                       NaT
-         ACN   67.132324                 None                       NaT
-         ABT   21.150566                 None                       NaT
-        TMUS    8.850021                 None                       NaT
-          MS   11.849510                 None                       NaT
-         BMY    6.318901                 None                       NaT
-         NOW  206.500031                 None                       NaT
-        SPGI   73.880341                 None                       NaT
-         AXP   46.092407                 None                       NaT
+        SNAP    0.320000                 None                       NaT
+         TSM   25.084877                 None                       NaT
+          SQ   18.429993                 None                       NaT
+        ROKU   49.840004                 None                       NaT
+          ZM   -7.770004                 None                       NaT
+        DOCU   26.399994                 None                       NaT
+         NET   34.540001                 None                       NaT
+        OKTA   43.470001                 None                       NaT
+        DDOG   36.600006                 None                       NaT
+        SNOW   64.210007                 None                       NaT
+        FSLY   12.769999                 None                       NaT
+        PINS   10.359999                 None                       NaT
+        TWLO   33.119999                 None                       NaT
+        ETSY    4.669991                 None                       NaT
+        FVRR    2.480000                 None                       NaT
+       BRK-B   81.860046                 None                       NaT
+         ACN   67.132202                 None                       NaT
+         ABT   18.916016                 None                       NaT
+        TMUS    8.780029                 None                       NaT
+          MS   12.602753                 None                       NaT
+         BMY    6.558449                 None                       NaT
+         NOW  210.450043                 None                       NaT
+        SPGI   79.716888                 None                       NaT
+         AXP   46.092346                 None                       NaT
           DE   73.691345                 None                       NaT
-          TM   34.470001                 None                       NaT
-         ELV   16.946014                 None                       NaT
-         NEE    4.313980                 None                       NaT
-         SYK   83.787796                 None                       NaT
-         MMC   34.139923                 None                       NaT
-        VRTX  110.320038                 None                       NaT
-          CI   56.976135                 None                       NaT
-        REGN  365.109863                 None                       NaT
-          CB   38.836227                 None                       NaT
+          TM    0.000000                 None                       NaT
+         ELV   34.470001                 None                       NaT
+         NEE    0.000000                 None                       NaT
+         SYK    0.000000                 None                       NaT
+         MMC    0.000000                 None                       NaT
+        VRTX    0.000000                 None                       NaT
+         PGR    0.000000                 None                       NaT
+          CI   80.909668                 None                       NaT
+        REGN    0.000000                 None                       NaT
+          CB    0.000000                 None                       NaT
          SLB    0.000000                 None                       NaT
-         ETN   60.971130                 None                       NaT
+         ADI    0.000000                 None                       NaT
+         ETN    0.000000                 None                       NaT
          EOG    0.000000                 None                       NaT
          CME    0.000000                 None                       NaT
         PANW    0.000000                 None                       NaT
          ZTS    0.000000                 None                       NaT
+          MO    0.000000                 None                       NaT
          BDX    0.000000                 None                       NaT
-         BSX   14.330002                 None                       NaT
-          SO    0.000000                 None                       NaT
-          FI    0.000000                 None                       NaT
-          WM    0.000000                 None                       NaT
-        LULU    9.439194                 None                       NaT
-         FDX    0.000000                 None                       NaT
-        DELL    0.000000                 None                       NaT
-         MSI   28.925232                 None                       NaT
-         KHC    0.000000                 None                       NaT
-        PLTR    6.103584                 None                       NaT
-        MRNA   14.107002                 None                       NaT
-        TTWO    0.000000                 None                       NaT
-         HYG    0.000000                 None                       NaT
-         LQD   11.081955                 None                       NaT
-         IEF    5.631058                 None                       NaT
-         SMH   56.317001                 None                       NaT
+         NOC   47.290787                 None                       NaT
+         BSX   14.310001                 None                       NaT
+        SNPS  180.410065                 None                       NaT
+          SO    6.856323                 None                       NaT
+          FI   19.719994                 None                       NaT
+          WM   12.288208                 None                       NaT
+        LULU  115.680023                 None                       NaT
+         FDX   91.616989                 None                       NaT
+        DELL   29.605042                 None                       NaT
+         MSI  104.238510                 None                       NaT
+         KHC    6.103584                 None                       NaT
+        PLTR   14.420002                 None                       NaT
+        MRNA   52.989990                 None                       NaT
+         HYG   12.033226                 None                       NaT
+         IVV  107.012909                 None                       NaT
+         LQD   11.081963                 None                       NaT
+         IEF    5.494362                 None                       NaT
+         SMH   56.587006                 None                       NaT
         ARKK   18.614750                 None                       NaT
-        SOXX  184.450470                 None                       NaT
-        QUAL   31.751678                 None                       NaT
+        SOXX  212.467285                 None                       NaT
+        QUAL   32.011681                 None                       NaT
         XLRE    2.873062                 None                       NaT
         TSLQ   10.255016                 None                       NaT
         MSTR  208.040070                 None                       NaT
