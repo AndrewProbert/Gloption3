@@ -4,14 +4,17 @@ import pandas as pd
 import numpy as np
 from tabulate import tabulate
 from tqdm import tqdm
+from datetime import datetime
+import os
 
 
-ticker_symbol = ['tslq']
+ticker_symbol = ['ge']
+period = "300d"
 historical_data = []
 
 for i in ticker_symbol:
     ticker = yf.Ticker(i)
-    data = ticker.history(period="1000d", interval="1d")
+    data = ticker.history(period, interval="1d")
     historical_data.append(data)
 
 
@@ -230,7 +233,7 @@ for i in tqdm(range(len(historical_data[0]))):
     
 
     timestamp = historical_data[0].index[i]
-    open = historical_data[0]['Open'][i]
+    openPrice = historical_data[0]['Open'][i]
     high = historical_data[0]['High'][i]
     low = historical_data[0]['Low'][i]
     close = historical_data[0]['Close'][i]
@@ -279,7 +282,7 @@ for i in tqdm(range(len(historical_data[0]))):
 
 
 
-    table_data.append([timestamp, open, high, low, close, volume, rsiemaX, smaemaX, macdX, knnemaX ,total[i], totalDiff ])
+    table_data.append([timestamp, openPrice, high, low, close, volume, rsiemaX, smaemaX, macdX, knnemaX ,total[i], totalDiff ])
     progress = (i + 1) / len(historical_data[0]) * 100
     
 
@@ -305,3 +308,29 @@ print("Total Profit: ", sum(profitArray))
 
 
 
+# Define the output file name
+output_folder = "historicalData"
+if not os.path.exists(output_folder):
+    os.mkdir(output_folder)
+
+ticker_folder = os.path.join(output_folder, ticker_symbol[0])
+if not os.path.exists(ticker_folder):
+    os.mkdir(ticker_folder)
+
+period_folder = os.path.join(ticker_folder, period)
+if not os.path.exists(period_folder):
+    os.mkdir(period_folder)
+
+output_file = f"{ticker_symbol[0]}_{period}_{pd.Timestamp.now().strftime('%Y-%m-%d')}.txt"
+output_path = os.path.join(period_folder, output_file)
+
+# Save the output to the text file
+with open(output_path, "w") as file:
+    file.write("Trading Output for " + ticker_symbol[0] + " for the last 300 days\n")
+
+    file.write(table + "\n\n")
+    if x == 1:
+        file.write("Still holding position\n")
+        file.write("Buy Price: " + str(buyPrice) + " Buy Date: " + str(buyTime) + "\n\n")
+    file.write(tabulate(zip(*data), headers=headers) + "\n")
+    file.write("Total Profit: " + str(sum(profitArray)) + "\n")
