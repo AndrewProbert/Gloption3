@@ -15,7 +15,7 @@ received_symbol = sys.argv[1]
 ticker_symbol = [received_symbol]
 historical_data = []
 
-period = "300d"
+period = "1000d"
 
 for i in ticker_symbol:
     ticker = yf.Ticker(i)
@@ -304,6 +304,16 @@ else:
 headers = ["Buy Price", "Buy Time", "Sell Price", "Sell Time", "Profit"]
 data = [buyPriceArray, buyTimeArray, sellPriceArray, sellTimeArray, profitArray]
 print(tabulate(zip(*data), headers=headers))
+
+
+#change this to write the print to a csv file names the ticker symbol. Print the name of the ticker in the console.
+#if the ticker symbol matches the last symbol in the array in the overview file, delay 15 seconds for any other files to finish processing.
+#then in overview.py, read the csv files and print the data in a table.
+
+
+
+
+
 
 # Define the output file name
 output_folder = "historicalData"

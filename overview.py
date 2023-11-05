@@ -7,7 +7,7 @@ from datetime import datetime
 import concurrent.futures
 import shutil
 
-period = "300d"  # Period, this does not effect anything besides txt file naming, make sure to change it in loopFile.py as well
+period = "1000d"  # Period, this does not effect anything besides txt file naming, make sure to change it in loopFile.py as well
 
 path = "loopFile.py"  # Path to the file to be executed
 
@@ -73,7 +73,7 @@ def process_stock_symbol(stock_symbol):
         print("File 2 encountered an error or didn't run successfully.")
 
 # Use a thread pool to execute the process_stock_symbol function for each stock symbol
-with concurrent.futures.ThreadPoolExecutor(max_workers=3) as executor:
+with concurrent.futures.ThreadPoolExecutor(max_workers=10) as executor:
     futures = [executor.submit(process_stock_symbol, stock_symbol) for stock_symbol in stock_symbols]
     for future in concurrent.futures.as_completed(futures):
         pass
