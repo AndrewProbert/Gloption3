@@ -2,7 +2,12 @@ import subprocess
 import sys
 from tqdm import tqdm  # Import tqdm for a progress bar
 import pandas as pd
+import os
+from datetime import datetime
 import concurrent.futures
+import shutil
+
+period = "300d"  # Period, this does not effect anything besides txt file naming, make sure to change it in loopFile.py as well
 
 path = "loopFile.py"  # Path to the file to be executed
 
@@ -98,3 +103,24 @@ df = df.reset_index(drop=True)
 # Save the sorted DataFrame to a properly formatted text file
 with open("output.txt", "w") as f:
     f.write(df.to_string(index=False))
+
+
+# ...
+
+# Save the sorted DataFrame to a properly formatted text file
+with open("output.txt", "w") as f:
+    f.write(df.to_string(index=False))
+
+# Create directories if they don't exist
+if not os.path.exists("historicalLoopData"):
+    os.mkdir("historicalLoopData")
+if not os.path.exists(f"historicalLoopData/{period}"):
+    os.mkdir(f"historicalLoopData/{period}")
+
+# Create a filename using the current date and time
+now = datetime.now()
+filename = now.strftime("%Y-%m-%d.txt")
+
+# Copy the output.txt file to the subdirectory with the new filename
+shutil.copy("output.txt", f"historicalLoopData/{period}/{filename}")
+

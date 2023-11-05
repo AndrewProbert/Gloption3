@@ -8,7 +8,7 @@ from datetime import datetime
 import os
 
 
-ticker_symbol = ['ge']
+ticker_symbol = ['aapl']
 period = "300d"
 historical_data = []
 
