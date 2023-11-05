@@ -8,8 +8,8 @@ from datetime import datetime
 import os
 
 
-ticker_symbol = ['spy']
-period = "300d"
+ticker_symbol = ['meta']
+period = "1000d"
 historical_data = []
 
 for i in ticker_symbol:
