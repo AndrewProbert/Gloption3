@@ -8,7 +8,7 @@ import concurrent.futures
 import shutil
 
 period = "300d"  # Period, this does not effect anything besides txt file naming, make sure to change it in loopFile.py as well
-max_workers = 2  # Number of threads to use
+max_workers = 3  # Number of threads to use
 
 path = "loopFile.py"  # Path to the file to be executed
 
@@ -20,7 +20,7 @@ stock_symbols = ['SPY', 'QQQ', 'IWM', 'DIA', 'GLD', 'SLV', 'AAPL', 'AMZN', 'GOOG
                  'TQQQ', 'FNGU', 'SPXL', 'UDOW', 'TNA', 'NUGT', 'JNUG',  
                  'GUSH', 'ERX', 'FAS', 'TLT', 'XLE', 'XLF', 'XLU', 'XLK', 'XLI', 'XLB', 'XLP', 'XLV', 'XLY', 'XBI', 'XOP', 
                  'XRT', 'XHB', 'XME', 'XSD', 'XSW', 'XITK', 'XNTK', 'XWEB', 'USO', 'GLDM', 'AMD', 'INTC', 'MU', 'TXN', 'AVGO', 'AMAT', 'ADP', 
-                 'ADSK', 'ASML', 'BIDU', 'BIIB', 'BMRN', 'CDNS', 'CHKP', 'CTAS', 'CTSH', 'CTXS', 'EA', 'EBAY', 'FAST', 'GILD', 'HAS', 
+                 'ADSK', 'ASML', 'BIDU', 'BIIB', 'BMRN', 'CDNS', 'CHKP', 'CTAS', 'CTSH', 'EA', 'EBAY', 'FAST', 'GILD', 'HAS', 
                  'HSIC', 'IDXX', 'ILMN', 'INCY', 'INTU', 'ISRG', 'JBHT', 'KLAC', 'LRCX', 'MCHP', 'MDLZ', 'MNST', 'NTAP', 'NTES', 'XOM', 'CVX', 'GS', 
                  'UNP', 'RTX', 'BA', 'MMM', 'CAT', 'IBM', 'HON', 'VZ', 'LMT', 'GE', 'LLY', 'SMCI', 'SCHW', 'GDX', 'EEM', 'EWZ', 'FXI', 'ARM', 'LIN', 'CSCO', 
                  'DHR', 'UPS', 'BX', 'TMO', 'AMGN', 'MDT', 'BLK', 'PM', 'PNC', 'UBER', 'ABNB', 'BABA',  'SNAP', 'TSM', 'SQ', 'ROKU', 'DOCU', 'CRWD', 

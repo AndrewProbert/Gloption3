@@ -8,8 +8,8 @@ from datetime import datetime
 import os
 
 
-ticker_symbol = ['meta']
-period = "1000d"
+ticker_symbol = ['gld']
+period = "300d"
 historical_data = []
 
 for i in ticker_symbol:
@@ -226,10 +226,12 @@ buyPriceArray = []
 buyTimeArray = []
 sellPriceArray = []
 sellTimeArray = []
+tradeLengthArray = []
 
 
 
 for i in tqdm(range(len(historical_data[0]))):
+
     
 
     timestamp = historical_data[0].index[i]
@@ -266,28 +268,31 @@ for i in tqdm(range(len(historical_data[0]))):
     
     if total[i] == 0 and x != 1:
         x = 1
+        index = i
         buyPrice = close
         buyTime = timestamp
         buyPriceArray.append(buyPrice)
         buyTimeArray.append(buyTime)
     elif total[i] != 0 and x == 1:
         x = 0
+        tradeIndex = i - index
         sellPrice = close
         sellTime = timestamp
         profit = sellPrice - buyPrice
         profitArray.append(profit)
         sellPriceArray.append(sellPrice)
         sellTimeArray.append(sellTime)
+        tradeLengthArray.append(tradeIndex)
 
 
 
 
-    table_data.append([timestamp, openPrice, high, low, close, volume, rsiemaX, smaemaX, macdX, knnemaX ,total[i], totalDiff ])
+    table_data.append([i, timestamp, openPrice, high, low, close, volume, rsiemaX, smaemaX, macdX, knnemaX ,total[i], totalDiff ])
     progress = (i + 1) / len(historical_data[0]) * 100
     
 
 
-headers = ["Timestamp", "Open", "High", "Low", "Close", "Volume", "RSIEMA Cross", "SMA/VWAP Cross", "MACD Cross", "KNN EMA X","Total", "Total Diff"]
+headers = ["Index", "Timestamp", "Open", "High", "Low", "Close", "Volume", "RSIEMA Cross", "SMA/VWAP Cross", "MACD Cross", "KNN EMA X","Total", "Total Diff"]
  
 table = (tabulate(table_data, headers, tablefmt="grid"))
 print(table , "\n")
@@ -300,11 +305,11 @@ if x == 1:
 
 
 
-headers = ["Buy Price", "Buy Time", "Sell Price", "Sell Time", "Profit"]
-data = [buyPriceArray, buyTimeArray, sellPriceArray, sellTimeArray, profitArray]
+headers = ["Buy Price", "Buy Time", "Sell Price", "Sell Time", "Profit", "Trade Length"]
+data = [buyPriceArray, buyTimeArray, sellPriceArray, sellTimeArray, profitArray, tradeLengthArray]
 print(tabulate(zip(*data), headers=headers))
 
-print("Total Profit: ", sum(profitArray))
+print("Total Profit: ", sum(profitArray), "Median Trade Length: ", np.median(tradeLengthArray), "Average Trade Length: ", np.mean(tradeLengthArray))
 
 
 
@@ -333,4 +338,4 @@ with open(output_path, "w") as file:
         file.write("Still holding position\n")
         file.write("Buy Price: " + str(buyPrice) + " Buy Date: " + str(buyTime) + "\n\n")
     file.write(tabulate(zip(*data), headers=headers) + "\n")
-    file.write("Total Profit: " + str(sum(profitArray)) + "\n")
+    file.write("Total Profit: " + str(sum(profitArray)) + " Median Trade Length: " + str(np.median(tradeLengthArray)) + " Average Trade Length: " + str(np.mean(tradeLengthArray)) + "\n")
