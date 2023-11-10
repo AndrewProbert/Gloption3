@@ -8,7 +8,7 @@ from datetime import datetime
 import os
 
 
-ticker_symbol = ['gld']
+ticker_symbol = ['labd']
 period = "300d"
 historical_data = []
 
@@ -262,7 +262,7 @@ for i in tqdm(range(len(historical_data[0]))):
         
 
 
-    total.append(rsiemaX + smaemaX + macdX + knnemaX)
+    total.append(rsiemaX + macdX + knnemaX)
     totalDiff = total[i] - total[i - 1]
 
     

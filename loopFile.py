@@ -5,6 +5,7 @@ from tqdm import tqdm
 import sys
 import os
 import pandas as pd
+from datetime import datetime, timedelta
 
 if len(sys.argv) < 2:
     print("Please provide a stock symbol as an argument")
@@ -16,12 +17,16 @@ ticker_symbol = [received_symbol]
 historical_data = []
 
 period = "300d"
+start_date = "2023-01-01"
+
+end_date = (datetime.today() + timedelta(days=1)).strftime('%Y-%m-%d')
+historical_data = []
 
 for i in ticker_symbol:
-    ticker = yf.Ticker(i)
-    data = ticker.history(period, interval="1d")
-    historical_data.append(data)
 
+    ticker = yf.Ticker(i)
+    data = ticker.history(start=start_date, end=end_date, interval="1d")
+    historical_data.append(data)
 
 
 def calcRSI(data, period = 14):

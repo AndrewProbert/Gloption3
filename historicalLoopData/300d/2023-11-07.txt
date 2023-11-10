@@ -1,216 +1,216 @@
 Stock Symbol      Profit            Buy Price                  Buy Date
-         GLD   27.699966  182.16000366210938  2023-11-07 00:00:00-05:00
-        GLDM    6.069984  38.994998931884766  2023-11-07 00:00:00-05:00
-         SLV    7.580000  20.639999389648438  2023-11-07 00:00:00-05:00
+         GLD   27.699966  182.58999633789062  2023-11-07 00:00:00-05:00
+        GLDM    6.069984   39.04999923706055  2023-11-07 00:00:00-05:00
           CI   51.286133   306.8399963378906  2023-11-06 00:00:00-05:00
-         XOM   36.095100  107.77999877929688  2023-11-03 00:00:00-04:00
-         PGR   51.071152  158.77000427246094  2023-11-02 00:00:00-04:00
-         NOC   66.830444    468.260009765625  2023-11-01 00:00:00-04:00
-         CME   44.330536   210.9199981689453  2023-11-01 00:00:00-04:00
-         EOG   23.245125  124.22000122070312  2023-11-01 00:00:00-04:00
+         XOM   36.095093  107.77999877929688  2023-11-03 00:00:00-04:00
+         PGR   51.071159  158.77000427246094  2023-11-02 00:00:00-04:00
+         NOC   66.830414    468.260009765625  2023-11-01 00:00:00-04:00
+         CME   44.330505   210.9199981689453  2023-11-01 00:00:00-04:00
+         EOG   23.245110  124.22000122070312  2023-11-01 00:00:00-04:00
          USO    9.519997               74.75  2023-11-01 00:00:00-04:00
-         SLB   20.150417   55.65999984741211  2023-10-31 00:00:00-04:00
-       GOOGL   30.239998  124.08000183105469  2023-10-31 00:00:00-04:00
          COP   32.946404  118.80000305175781  2023-10-31 00:00:00-04:00
-        AMGN   43.540817   255.6999969482422  2023-10-31 00:00:00-04:00
-         XLE   25.054169   85.19000244140625  2023-10-31 00:00:00-04:00
+         SLB   20.150417   55.65999984741211  2023-10-31 00:00:00-04:00
+        AMGN   43.540787   255.6999969482422  2023-10-31 00:00:00-04:00
+       GOOGL   30.239998  124.08000183105469  2023-10-31 00:00:00-04:00
+        GOOG   32.459984  125.30000305175781  2023-10-31 00:00:00-04:00
+         XLE   25.054192   85.19000244140625  2023-10-31 00:00:00-04:00
         TTWO   44.949989              133.75  2023-10-31 00:00:00-04:00
+        SMCI  201.300018   236.6199951171875  2023-10-30 00:00:00-04:00
          XOP   29.940735  143.39999389648438  2023-10-30 00:00:00-04:00
         GUSH   15.329006  36.369998931884766  2023-10-30 00:00:00-04:00
         PANW   83.593353   238.7899932861328  2023-10-27 00:00:00-04:00
-         UNH   36.606842               525.0  2023-10-24 00:00:00-04:00
-         SPY   31.492218                 None                      None
-         QQQ   98.468506                 None                      None
-         IWM  116.659698                 None                      None
+         UNH   36.606873               525.0  2023-10-24 00:00:00-04:00
+         SPY  116.659698                 None                      None
+         QQQ   98.468536                 None                      None
+         IWM   31.492218                 None                      None
          DIA   93.314026                 None                      None
+         SLV    7.580000                 None                      None
         AAPL   36.479988                 None                      None
-        AMZN   39.759987                 None                      None
-        GOOG   57.768600                 None                      None
+        AMZN   57.768600                 None                      None
         META   83.750000                 None                      None
         TSLA  140.819992                 None                      None
-        NVDA  293.455551                 None                      None
-        MSFT   45.811836                 None                      None
-         JPM   76.759140                 None                      None
-         BAC    0.291565                 None                      None
-         WFC    1.214344                 None                      None
-           C    4.242947                 None                      None
-           V   74.384796                 None                      None
-          MA  139.343567                 None                      None
-        ADBE  253.530029                 None                      None
+        NVDA  293.455566                 None                      None
+        MSFT   76.759140                 None                      None
+         JPM   45.811775                 None                      None
+         BAC    0.291561                 None                      None
+         WFC    1.214348                 None                      None
+           C    4.242943                 None                      None
+           V   74.384750                 None                      None
+          MA  253.530029                 None                      None
+        ADBE  139.343689                 None                      None
          CRM   94.029999                 None                      None
-        NFLX    9.060005                 None                      None
-         DIS  260.069946                 None                      None
-          HD   59.406738                 None                      None
-         MCD   56.261230                 None                      None
-         NKE   33.103287                 None                      None
-        SBUX   24.316505                 None                      None
+        NFLX  260.069946                 None                      None
+         DIS    9.060005                 None                      None
+          HD   59.406647                 None                      None
+         MCD   56.261414                 None                      None
+         NKE   33.103302                 None                      None
+        SBUX   24.316513                 None                      None
           KO    6.329544                 None                      None
-         PEP   25.557846                 None                      None
-          PG   26.693481                 None                      None
-         JNJ   12.361420                 None                      None
+         PEP   25.557877                 None                      None
+          PG   26.693497                 None                      None
+         JNJ   12.361496                 None                      None
          MRK   33.237343                 None                      None
-        ABBV   22.890396                 None                      None
+        ABBV   22.890411                 None                      None
          CVS    4.436722                 None                      None
          WMT   26.125549                 None                      None
-         TGT   20.016098                 None                      None
-        COST  112.576019                 None                      None
-         LOW   56.799805                 None                      None
-         TJX   19.869888                 None                      None
-           M    8.706562                 None                      None
-         AMT    9.846039                 None                      None
-         CCI    8.755524                 None                      None
-         PLD   45.701736                 None                      None
-         SPG   26.401970                 None                      None
-        EQIX  340.734314                 None                      None
-         DLR   19.361511                 None                      None
-         AVB   17.463646                 None                      None
+         TGT  112.576019                 None                      None
+        COST   20.016083                 None                      None
+         LOW   56.799835                 None                      None
+         TJX    8.706562                 None                      None
+           M   19.869873                 None                      None
+         AMT    9.846054                 None                      None
+         CCI    8.755539                 None                      None
+         PLD   45.701706                 None                      None
+         SPG   26.402023                 None                      None
+        EQIX  340.734375                 None                      None
+         DLR   17.463654                 None                      None
+         AVB   19.361496                 None                      None
          EQR    4.717407                 None                      None
          AIV    2.349740                 None                      None
          UDR    4.469135                 None                      None
-         VTR    8.827400                 None                      None
-           O    5.708092                 None                      None
-          WY    5.747921                 None                      None
+         VTR    8.827396                 None                      None
+           O    5.708122                 None                      None
+          WY    5.747927                 None                      None
          BXP    9.204182                 None                      None
-         SLG    8.882551                 None                      None
-         ARE   11.846909                 None                      None
-         HST    1.217888                 None                      None
+         SLG    8.882547                 None                      None
+         ARE   11.846878                 None                      None
+         HST    1.217890                 None                      None
          HLT   42.335114                 None                      None
-         MAR   86.960556                 None                      None
-           H   15.359997                 None                      None
-         HGV   45.733162                 None                      None
-         IHG   27.344799                 None                      None
+         MAR   86.960571                 None                      None
+           H   45.733162                 None                      None
+         HGV   15.359997                 None                      None
+         IHG   27.344807                 None                      None
          CCL    4.600001                 None                      None
          RCL   31.209991                 None                      None
         NCLH    3.290001                 None                      None
-         LUV    4.389668                 None                      None
+         LUV    4.389675                 None                      None
          UAL   22.320004                 None                      None
          DAL   15.483952                 None                      None
          AAL    2.860000                 None                      None
         JBLU    3.549999                 None                      None
          ALK    7.690002                 None                      None
         SAVE   24.749992                 None                      None
-        EXPE    0.424610                 None                      None
+        EXPE    0.424606                 None                      None
         BKNG 1595.669922                 None                      None
          SIX   14.159996                 None                      None
-         FUN    5.875492                 None                      None
+         FUN    5.875484                 None                      None
         PLNT   22.889992                 None                      None
-        SEAS    8.820004                 None                      None
-         CZR   18.615002                 None                      None
+        SEAS   18.615002                 None                      None
+         CZR    8.820004                 None                      None
          MGM   16.399410                 None                      None
-        WYNN   70.479988                 None                      None
+        WYNN   70.480022                 None                      None
          LVS   18.183548                 None                      None
-        ROST   30.917450                 None                      None
-         BBY   17.249374                 None                      None
+        ROST   30.917442                 None                      None
+         BBY   17.249382                 None                      None
         TSCO   67.633728                 None                      None
-          DG   30.300278                 None                      None
+          DG   30.300293                 None                      None
         DLTR    8.580002                 None                      None
           KR    2.797150                 None                      None
-        SOXL   21.621805                 None                      None
-        TQQQ   26.466875                 None                      None
+        SOXL   21.621803                 None                      None
+        TQQQ   26.466869                 None                      None
         FNGU  118.850006                 None                      None
-        SPXL   42.270462                 None                      None
+        SPXL   42.270447                 None                      None
         UDOW   35.015041                 None                      None
-         TNA   14.244671                 None                      None
-        NUGT   18.384974                 None                      None
-        JNUG   14.899534                 None                      None
-         ERX   28.053883                 None                      None
-         FAS   13.147545                 None                      None
-         TLT   11.662437                 None                      None
-         XLF    2.675158                 None                      None
+         TNA   14.244675                 None                      None
+        NUGT   18.384960                 None                      None
+        JNUG   14.899538                 None                      None
+         ERX   28.213871                 None                      None
+         FAS   13.147537                 None                      None
+         TLT   11.662422                 None                      None
+         XLF    2.675152                 None                      None
          XLU    3.721321                 None                      None
-         XLK   60.712936                 None                      None
-         XLI   25.985870                 None                      None
-         XLB    9.084427                 None                      None
-         XLP    7.499962                 None                      None
-         XLV   20.987274                 None                      None
-         XLY   44.355545                 None                      None
+         XLK   60.712967                 None                      None
+         XLI   25.985909                 None                      None
+         XLB    9.084404                 None                      None
+         XLP    7.499969                 None                      None
+         XLV   20.987244                 None                      None
+         XLY   44.355530                 None                      None
          XBI    9.589767                 None                      None
-         XRT    9.776703                 None                      None
-         XHB   28.785351                 None                      None
-         XME   16.083874                 None                      None
-         XSD   82.368469                 None                      None
-         XSW   38.373833                 None                      None
-        XITK   54.729210                 None                      None
-        XNTK   44.953522                 None                      None
+         XRT    9.776718                 None                      None
+         XHB   28.785362                 None                      None
+         XME   16.083881                 None                      None
+         XSD   82.368515                 None                      None
+         XSW   38.373817                 None                      None
+        XITK   54.729218                 None                      None
+        XNTK   44.953529                 None                      None
         XWEB   16.457001                 None                      None
          AMD   51.860008                 None                      None
-        INTC   18.994211                 None                      None
-          MU   36.153488                 None                      None
-         TXN   28.961105                 None                      None
-        AVGO  401.762512                 None                      None
-        AMAT   14.513840                 None                      None
-         ADP   85.085251                 None                      None
+        INTC   18.994207                 None                      None
+          MU   28.961105                 None                      None
+         TXN   36.153427                 None                      None
+        AVGO  401.762451                 None                      None
+        AMAT   85.085258                 None                      None
+         ADP   14.513855                 None                      None
         ADSK   24.550003                 None                      None
-        ASML  115.820007                 None                      None
-        BIDU  312.747192                 None                      None
+        ASML  312.747070                 None                      None
+        BIDU  115.820007                 None                      None
         BIIB   78.629974                 None                      None
         BMRN    8.959999                 None                      None
         CDNS  107.359985                 None                      None
         CHKP   32.950005                 None                      None
         CTAS  106.609375                 None                      None
-        CTSH   10.525257                 None                      None
-          EA   18.809189                 None                      None
-        EBAY   16.060204                 None                      None
-        FAST    8.591923                 None                      None
-        GILD   16.798416                 None                      None
-         HAS   11.475544                 None                      None
+        CTSH   10.525265                 None                      None
+          EA   18.809181                 None                      None
+        EBAY    8.591923                 None                      None
+        FAST   16.060204                 None                      None
+        GILD   16.798439                 None                      None
+         HAS   11.475540                 None                      None
         HSIC    5.619995                 None                      None
         IDXX  231.160004                 None                      None
         ILMN   23.919998                 None                      None
         INCY    5.480003                 None                      None
-        INTU  178.957123                 None                      None
+        INTU  177.877075                 None                      None
         ISRG   83.229996                 None                      None
-        JBHT   31.500427                 None                      None
-        KLAC  261.149658                 None                      None
-        LRCX  294.616943                 None                      None
+        JBHT   31.500443                 None                      None
+        KLAC  261.149567                 None                      None
+        LRCX  294.617004                 None                      None
         MCHP   25.214333                 None                      None
-        MDLZ   15.179405                 None                      None
+        MDLZ   15.179420                 None                      None
         MNST   18.944996                 None                      None
         NTAP   13.809105                 None                      None
         NTES   65.044296                 None                      None
-         CVX   33.024216                 None                      None
-          GS    4.361938                 None                      None
-         UNP   30.755676                 None                      None
-         RTX   22.671196                 None                      None
+         CVX   33.024185                 None                      None
+          GS    4.361908                 None                      None
+         UNP   30.755630                 None                      None
+         RTX   22.671150                 None                      None
           BA  117.809998                 None                      None
          MMM    3.620598                 None                      None
-         CAT   92.176102                 None                      None
+         CAT   90.756042                 None                      None
          IBM   31.486465                 None                      None
-         HON   22.171432                 None                      None
-          VZ    2.274063                 None                      None
-         LMT   70.880859                 None                      None
-          GE   53.041485                 None                      None
-         LLY  290.289368                 None                      None
-        SMCI  222.019928                 None                      None
+         HON   22.171402                 None                      None
+          VZ    2.274067                 None                      None
+         LMT   70.880676                 None                      None
+          GE   53.041515                 None                      None
+         LLY  295.339325                 None                      None
         SCHW   13.059494                 None                      None
          GDX    7.790834                 None                      None
          EEM    5.533958                 None                      None
          EWZ    0.000000                 None                      None
-         FXI   10.856041                 None                      None
+         FXI   10.856045                 None                      None
          ARM    3.391235                 None                      None
-         LIN  139.872437                 None                      None
-        CSCO   18.117554                 None                      None
+         LIN  139.872406                 None                      None
+        CSCO   18.117550                 None                      None
          DHR   10.138855                 None                      None
-         UPS   31.120285                 None                      None
-          BX   25.406227                 None                      None
+         UPS   25.406235                 None                      None
+          BX   31.120285                 None                      None
          TMO   63.453186                 None                      None
-         MDT   11.282158                 None                      None
+         MDT   11.282135                 None                      None
          BLK  148.658264                 None                      None
-          PM   16.315491                 None                      None
-         PNC   22.071365                 None                      None
+          PM   16.315483                 None                      None
+         PNC   22.071396                 None                      None
         UBER   20.539999                 None                      None
         ABNB   57.124992                 None                      None
         BABA   10.220001                 None                      None
         SNAP    0.320000                 None                      None
-         TSM   25.084885                 None                      None
+         TSM   25.084877                 None                      None
           SQ   20.949989                 None                      None
         ROKU   49.840004                 None                      None
         DOCU   27.739994                 None                      None
         CRWD   56.459969                 None                      None
          NET   37.010002                 None                      None
-          ZS   61.860031                 None                      None
+          ZS   61.870026                 None                      None
         OKTA   43.470001                 None                      None
-         MDB  254.965042                 None                      None
+         MDB  246.145065                 None                      None
         DDOG   36.600006                 None                      None
         SNOW   64.210007                 None                      None
         FSLY   12.839999                 None                      None
@@ -219,47 +219,47 @@ Stock Symbol      Profit            Buy Price                  Buy Date
         ETSY    4.669991                 None                      None
         FVRR    2.480000                 None                      None
        BRK-B   86.310059                 None                      None
-         ACN   70.366211                 None                      None
-         ABT   18.916023                 None                      None
+         ACN   70.366302                 None                      None
+         ABT   18.915993                 None                      None
         TMUS   12.440018                 None                      None
-          MS   10.876984                 None                      None
-         BMY    6.237686                 None                      None
+          MS   10.876991                 None                      None
+         BMY    6.237679                 None                      None
          NOW  220.190033                 None                      None
-        SPGI   84.014435                 None                      None
-         AXP   49.675476                 None                      None
-          DE   73.691345                 None                      None
+        SPGI   84.014496                 None                      None
+         AXP   49.675491                 None                      None
+          DE   73.691315                 None                      None
           TM   34.470001                 None                      None
          ELV   29.046722                 None                      None
-         NEE    4.314003                 None                      None
+         NEE    4.313995                 None                      None
          SYK   92.145752                 None                      None
-         MMC   38.058670                 None                      None
+         MMC   38.058685                 None                      None
         VRTX  130.150055                 None                      None
         REGN  492.149902                 None                      None
-          CB   38.943939                 None                      None
+          CB   38.943924                 None                      None
          ADI   60.971100                 None                      None
-         ETN  105.667191                 None                      None
+         ETN  105.667038                 None                      None
          ZTS   60.079010                 None                      None
-          MO    7.304264                 None                      None
+          MO    7.304256                 None                      None
          BDX   61.129684                 None                      None
-         BSX    0.000000                 None                      None
-        SNPS    0.000000                 None                      None
-          SO  180.960052                 None                      None
-          FI    7.806892                 None                      None
-          WM    0.000000                 None                      None
-        LULU    0.000000                 None                      None
-         FDX    0.000000                 None                      None
-        DELL    0.000000                 None                      None
-         MSI    0.000000                 None                      None
-         KHC   95.730255                 None                      None
-        PLTR    0.000000                 None                      None
-        MRNA    0.000000                 None                      None
-         HYG   52.989990                 None                      None
-         IVV    0.000000                 None                      None
-         LQD  109.157379                 None                      None
-         IEF    0.000000                 None                      None
-         SMH    5.494385                 None                      None
-        ARKK    0.000000                 None                      None
-        SOXX    0.000000                 None                      None
-        QUAL    0.000000                 None                      None
-        XLRE    0.000000                 None                      None
-        MSTR    3.207153                 None                      None
+         BSX  180.960052                 None                      None
+        SNPS   14.310001                 None                      None
+          SO    7.806892                 None                      None
+          FI   21.779991                 None                      None
+          WM   17.624176                 None                      None
+        LULU   95.960022                 None                      None
+         FDX   95.730255                 None                      None
+        DELL   29.605053                 None                      None
+         MSI  113.586060                 None                      None
+         KHC    6.103584                 None                      None
+        PLTR   14.380001                 None                      None
+        MRNA   52.989990                 None                      None
+         HYG   12.033241                 None                      None
+         IVV  109.157318                 None                      None
+         LQD   11.081985                 None                      None
+         IEF    5.494392                 None                      None
+         SMH   56.587006                 None                      None
+        ARKK   18.614750                 None                      None
+        SOXX  218.374268                 None                      None
+        QUAL   34.013519                 None                      None
+        XLRE    3.207150                 None                      None
+        MSTR  222.400070                 None                      None

@@ -8,7 +8,7 @@ import concurrent.futures
 import shutil
 
 period = "300d"  # Period, this does not effect anything besides txt file naming, make sure to change it in loopFile.py as well
-max_workers = 3  # Number of threads to use
+max_workers = 2  # Number of threads to use
 
 path = "loopFile.py"  # Path to the file to be executed
 
