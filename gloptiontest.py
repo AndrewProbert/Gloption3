@@ -6,8 +6,8 @@ import numpy as np
 
 ticker = 'spy'
 #period = "1000d"
-start_date = "2022-10-01"
-end_date = "2023-11-10"
+start_date = "2000-01-01"
+end_date = "2023-11-11"
 historical_data = []
 
 symbol = yf.Ticker(ticker)
@@ -18,7 +18,7 @@ historical_data.append(data)
 
 
 
-def calcRsi(data, column='Close', period=14, ema_period=14):
+def calcRsi(data, column='Close', period=30, ema_period=14):
     delta = data[column].diff(1)
     gain = delta.where(delta > 0, 0)
     loss = -delta.where(delta < 0, 0)
@@ -38,7 +38,7 @@ def rsi_greater_than_ema(rsi, ema_rsi):
     else:
         return 0
 
-def calcMACD(data, period_long=26, period_short=12, period_signal=9):
+def calcMACD(data, period_long=52, period_short=12, period_signal=9):
     ema_long = data['Close'].ewm(span=period_long, adjust=False).mean()
     ema_short = data['Close'].ewm(span=period_short, adjust=False).mean()
     macd = ema_short - ema_long
@@ -60,7 +60,7 @@ def ema_greater_than_knn(ema, knn_ma):
 
 
 
-ma_len = 5
+ma_len = 50
 ema_len_5 = 5
 
 def calculate_knn_ma(price_values, ma_len):
@@ -134,7 +134,7 @@ def calculate_ema(price_values, ema_len):
 
     return ema
 
-def calcVWAP(data, period=1):
+def calcVWAP(data, period=14):
     tp = (data['High'] + data['Low'] + data['Close']) / 3
     vwap = (tp * data['Volume']).rolling(window=period, min_periods=1).sum() / data['Volume'].rolling(window=period, min_periods=1).sum()
     return vwap
@@ -149,33 +149,39 @@ def vwap_greater_than_sma(vwap, sma):
     else:
         return 0
     
-def connors_rsi(data, period=3, ema_period=2):
-    delta = data['Close'].diff(1)
-    up = delta.where(delta > 0, 0)
-    down = -delta.where(delta < 0, 0)
+def calcADX(data, period=14):
+    # Calculate the True Range
+    data['TR'] = 0
+    for i in range(1, len(data)):
+        data['TR'][i] = max(data['High'][i] - data['Low'][i], abs(data['High'][i] - data['Close'][i-1]), abs(data['Low'][i] - data['Close'][i-1]))
+    
+    # Calculate the Directional Movement
+    data['DM+'] = 0
+    data['DM-'] = 0
+    for i in range(1, len(data)):
+        data['DM+'][i] = data['High'][i] - data['High'][i-1] if data['High'][i] - data['High'][i-1] > data['Low'][i-1] - data['Low'][i] else 0
+        data['DM-'][i] = data['Low'][i-1] - data['Low'][i] if data['Low'][i-1] - data['Low'][i] > data['High'][i] - data['High'][i-1] else 0
+    
+    # Calculate the Directional Indicators
+    data['DI+'] = 100 * data['DM+'].rolling(window=period, min_periods=1).sum() / data['TR'].rolling(window=period, min_periods=1).sum()
+    data['DI-'] = 100 * data['DM-'].rolling(window=period, min_periods=1).sum() / data['TR'].rolling(window=period, min_periods=1).sum()
+    
+    # Calculate the Directional Index
+    data['DX'] = 100 * abs(data['DI+'] - data['DI-']) / (data['DI+'] + data['DI-'])
+    
+    # Calculate the ADX
+    data['ADX'] = data['DX'].rolling(window=period, min_periods=1).mean()
+    
+    return data['ADX']
 
-    up_sma = up.rolling(window=period, min_periods=1).mean()
-    down_sma = down.rolling(window=period, min_periods=1).mean()
-
-    rsi = up_sma / (up_sma + down_sma)
-    rsi = rsi.ewm(span=ema_period, adjust=False).mean()
-
-    return rsi
-
-#See if connors rsi is between 0.2 and 0.8
-def connors_rsi_between_20_80(connors_rsi):
-    if connors_rsi >= 0.2 and connors_rsi <= 0.7:
+#return 1 if adx > 25 else 0
+def adx_greater_than_25(adx):
+    if adx > 30:
         return 1
     else:
         return 0
     
-
-#function to see if price is over or under the 200 day moving average
-def price_over_ma(data):
-    if data['Close'] > data['200ma']:
-        return 1
-    else:
-        return 0
+    
 
 for i in range(len(historical_data)):
     print (historical_data[i])
@@ -190,7 +196,8 @@ for i in range(len(historical_data)):
     historical_data[i]['EMA'] = calculate_ema(historical_data[i]['Close'], ema_len_5)
     historical_data[i]['VWAP'] = calcVWAP(historical_data[i])
     historical_data[i]['SMA'] = calcSMA(historical_data[i])
-    historical_data[i]['CONNORS_RSI'] = connors_rsi(historical_data[i])
+    historical_data[i]['ADX'] = calcADX(historical_data[i])
+
 
 
 
@@ -209,6 +216,9 @@ for i in range(len(historical_data)):
     sellTimeArray = []
     profitArray = []
     table_data = []
+    total_gain = []
+    total_loss = []
+    profit_by_year = {}
 
     for index, row in historical_data[i].iterrows():
         total = 0
@@ -222,7 +232,9 @@ for i in range(len(historical_data)):
         ema = row['EMA']
         vwap = row['VWAP']
         sma = row['SMA']
-        connors_rsi = row['CONNORS_RSI']
+        
+        adx = row['ADX']
+
         
 
 
@@ -232,23 +244,21 @@ for i in range(len(historical_data)):
         MACDSMAX = macd_greater_than_signal(macdValue, signalValue)
         KNNEMAX = ema_greater_than_knn(ema, knn_ma)
         VWAPSMAX = vwap_greater_than_sma(vwap, sma)
-        CONNORSRSI = connors_rsi_between_20_80(connors_rsi)
+        ADX25 = adx_greater_than_25(adx)
 
-        total = RSIEMAX + MACDSMAX + KNNEMAX #+ VWAPSMAX + CONNORSRSI
+        total = KNNEMAX + RSIEMAX   + VWAPSMAX  + MACDSMAX
         table_data.append([index, closeValue, rsiValue, emaRsiValue, RSIEMAX, macdValue, signalValue, MACDSMAX, knn_ma, ema, KNNEMAX,
-                           vwap, sma, VWAPSMAX, CONNORSRSI, total])
+                           vwap, sma, VWAPSMAX, adx, ADX25, total])
 
 
-        stop_loss = 0.005 # 5% stop loss
-        stop_profit = 1 # 10% stop profit
 
-        if total == 0 and x == 0:
+        if (total == 2 and x == 0) and ADX25 == 1:
             buyPrice = closeValue
             buyPriceArray.append(buyPrice)
             buyTime = index
             buyTimeArray.append(buyTime)
             x = 1
-        elif (total != 0 or (closeValue - buyPrice) / buyPrice <= -stop_loss) and x == 1:
+        elif total < 1 and x == 1:
 
             sellPrice = closeValue
             sellPriceArray.append(sellPrice)
@@ -256,10 +266,20 @@ for i in range(len(historical_data)):
             sellTimeArray.append(sellTime)
             profit = sellPrice - buyPrice
             profitArray.append(profit)
+            if profit > 0:
+                total_gain.append(profit)
+            else:
+                total_loss.append(profit)
             x = 0
+            
+            # Record profit by year
+            year = index.year
+            if year not in profit_by_year:
+                profit_by_year[year] = []
+            profit_by_year[year].append(profit)
 
 
-headers = ["Date", "Close", "RSI", "EMA_RSI", "RSI > EMA_RSI", "MACD", "SIGNAL", "MACD > SIGNAL", "KNN_MA", "EMA", "EMA > KNN_MA", "VWAP", "SMA", "VWAP > SMA", "Connors", "Total"]
+headers = ["Date", "Close", "RSI", "EMA_RSI", "RSI > EMA_RSI", "MACD", "SIGNAL", "MACD > SIGNAL", "KNN_MA", "EMA", "EMA > KNN_MA", "VWAP", "SMA", "VWAP > SMA", "ADX", "ADX > 25", "Total"]
 print(tabulate(table_data, headers=headers))    
 
 print("\n")
@@ -267,5 +287,14 @@ headers = ["Buy Price", "Buy Time", "Sell Price", "Sell Time", "Profit"]
 data = list(zip(buyPriceArray, buyTimeArray, sellPriceArray, sellTimeArray, profitArray))
 print(tabulate(data, headers=headers))
 print("Total Profit: ", sum(profitArray))
+print("Total Gain: ", sum(total_gain))
+print("Total Loss: ", sum(total_loss))
+print("Total Trades: ", len(profitArray))
 
-            
+
+
+
+'''
+for year in sorted(profit_by_year.keys()):
+    print(f"{year}: {sum(profit_by_year[year])}")
+            '''

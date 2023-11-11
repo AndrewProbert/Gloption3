@@ -8,10 +8,10 @@ from datetime import datetime
 import os
 
 
-ticker_symbol = ['aapl']
-period = "294d"
-start_date = "2023-01-01"
-end_date = "2023-08-01"
+ticker_symbol = ['spy']
+period = "600d"
+start_date = "2021-01-01"
+end_date = "2023-10-12"
 historical_data = []
 
 for i in ticker_symbol:
@@ -268,7 +268,7 @@ for i in tqdm(range(len(historical_data[0]))):
         
 
 
-    total.append(rsiemaX + macdX + smaemaX + knnemaX)
+    total.append(rsiemaX + macdX  + knnemaX + smaemaX)
     totalDiff = total[i] - total[i - 1]
 
     
@@ -290,14 +290,15 @@ for i in tqdm(range(len(historical_data[0]))):
         sellTimeArray.append(sellTime)
         tradeLengthArray.append(tradeIndex)
 
-
-
-    table_data.append([(i+1), timestamp, openPrice, high, low, close, volume, rsiemaX, smaemaX, macdX, knnemaX ,total[i], totalDiff ])
+    if len(knn_ma) > i and len(ema_5) > i:
+        table_data.append([(i+1), timestamp, openPrice, high, low, close, volume, rsiemaX, smaemaX, macdX, knnemaX ,total[i], totalDiff, knn_ma[i], ema_5[i]])
+    else:
+        table_data.append([(i+1), timestamp, openPrice, high, low, close, volume, rsiemaX, smaemaX, macdX, knnemaX ,total[i], totalDiff, 0, 0])
     progress = (i + 1) / len(historical_data[0]) * 100
     
 
 
-headers = ["Index", "Timestamp", "Open", "High", "Low", "Close", "Volume", "RSIEMA Cross", "SMA/VWAP Cross", "MACD Cross", "KNN EMA X","Total", "Total Diff"]
+headers = ["Index", "Timestamp", "Open", "High", "Low", "Close", "Volume", "RSIEMA Cross", "SMA/VWAP Cross", "MACD Cross", "KNN EMA X","Total", "Total Diff", "KNN MA", "EMA 5"]
  
 table = (tabulate(table_data, headers, tablefmt="grid"))
 print(table , "\n")
@@ -344,3 +345,5 @@ with open(output_path, "w") as file:
         file.write("Buy Price: " + str(buyPrice) + " Buy Date: " + str(buyTime) + "\n\n")
     file.write(tabulate(zip(*data), headers=headers) + "\n")
     file.write("Total Profit: " + str(sum(profitArray)) + " Median Trade Length: " + str(np.median(tradeLengthArray)) + " Average Trade Length: " + str(np.mean(tradeLengthArray)) + "\n")
+
+
