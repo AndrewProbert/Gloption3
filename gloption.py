@@ -8,13 +8,17 @@ from datetime import datetime
 import os
 
 
-ticker_symbol = ['labd']
-period = "300d"
+ticker_symbol = ['aapl']
+period = "294d"
+start_date = "2023-01-01"
+end_date = "2023-08-01"
 historical_data = []
 
 for i in ticker_symbol:
     ticker = yf.Ticker(i)
-    data = ticker.history(period, interval="1d")
+    #data = ticker.history(period, interval="1d")
+    #data = ticker.history(start=start_date, interval="1d")
+    data = ticker.history(start=start_date, end=end_date, interval="1d")
     historical_data.append(data)
 
 
@@ -134,6 +138,8 @@ def macdCross(macd, signal):
 
 def calculate_knn_ma(price_values, ma_len):
     knn_ma = [np.mean(price_values[i-ma_len:i]) for i in range(ma_len, len(price_values))]
+    #knn_ma = [0]*ma_len + knn_ma
+
     return knn_ma
 
 def calculate_ema(price_values, ema_len):
@@ -175,7 +181,7 @@ def calculate_knn_prediction(price_values, ma_len, num_closest_values=3, smoothi
     def knn_prediction(price, knn_ma, knn_smoothed):
         pos_count = 0
         neg_count = 0
-        min_distance = 1e10
+        min_distance = 1e10 
         nearest_index = 0
         
         # Check if there are enough elements in knn_ma and knn_smoothed
@@ -262,7 +268,7 @@ for i in tqdm(range(len(historical_data[0]))):
         
 
 
-    total.append(rsiemaX + macdX + knnemaX)
+    total.append(rsiemaX + macdX + smaemaX + knnemaX)
     totalDiff = total[i] - total[i - 1]
 
     
@@ -286,8 +292,7 @@ for i in tqdm(range(len(historical_data[0]))):
 
 
 
-
-    table_data.append([i, timestamp, openPrice, high, low, close, volume, rsiemaX, smaemaX, macdX, knnemaX ,total[i], totalDiff ])
+    table_data.append([(i+1), timestamp, openPrice, high, low, close, volume, rsiemaX, smaemaX, macdX, knnemaX ,total[i], totalDiff ])
     progress = (i + 1) / len(historical_data[0]) * 100
     
 
