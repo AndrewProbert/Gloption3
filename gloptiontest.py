@@ -190,8 +190,18 @@ def calcATR(data, period=14):
     atr = true_range.rolling(window=period, min_periods=1).mean()
     return atr
 
+def calcStoch(data, period=14):
+    data['L14'] = data['Low'].rolling(window=period, min_periods=1).min()
+    data['H14'] = data['High'].rolling(window=period, min_periods=1).max()
+    data['%K'] = 100 * (data['Close'] - data['L14']) / (data['H14'] - data['L14'])
+    data['%D'] = data['%K'].rolling(window=3, min_periods=1).mean()
+    return data['%K'], data['%D']
 
-    
+def stoch_greater_than_20(stoch):
+    if stoch > 20:
+        return 1
+    else:
+        return 0
 
 
 
@@ -212,6 +222,8 @@ for i in range(len(historical_data)):
     historical_data[i]['SMA'] = calcSMA(historical_data[i])
     historical_data[i]['ADX'] = calcADX(historical_data[i])
     atr_values = calcATR(historical_data[i])
+    stoch = calcStoch(historical_data[i])
+
 
 
 
@@ -262,6 +274,9 @@ for i in range(len(historical_data)):
         sma = row['SMA']
         
         adx = row['ADX']
+        stoch_d = row['%D']
+        stoch_d_greater_than_20 = stoch_greater_than_20(stoch_d)
+        
 
 
         
@@ -275,7 +290,7 @@ for i in range(len(historical_data)):
         VWAPSMAX = vwap_greater_than_sma(vwap, sma)
         ADX25 = adx_greater_than_25(adx)
 
-        total = KNNEMAX + RSIEMAX   + VWAPSMAX  + MACDSMAX
+        total = KNNEMAX + RSIEMAX   + VWAPSMAX  + MACDSMAX + ADX25 + stoch_d_greater_than_20
         table_data.append([index, closeValue, rsiValue, emaRsiValue, RSIEMAX, macdValue, signalValue, MACDSMAX, knn_ma, ema, KNNEMAX,
                            vwap, sma, VWAPSMAX, adx, ADX25,  total])
 
