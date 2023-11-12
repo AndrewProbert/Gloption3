@@ -6,7 +6,7 @@ import numpy as np
 
 ticker = 'spy'
 #period = "1000d"
-start_date = "2000-01-01"
+start_date = "2020-01-01"
 end_date = "2023-11-11"
 historical_data = []
 
@@ -61,7 +61,7 @@ def ema_greater_than_knn(ema, knn_ma):
 
 
 ma_len = 50
-ema_len_5 = 5
+ema_len_5 = 15
 
 def calculate_knn_ma(price_values, ma_len):
     knn_ma = [np.mean(price_values[i-ma_len:i]) for i in range(ma_len, len(price_values))]
@@ -139,11 +139,11 @@ def calcVWAP(data, period=14):
     vwap = (tp * data['Volume']).rolling(window=period, min_periods=1).sum() / data['Volume'].rolling(window=period, min_periods=1).sum()
     return vwap
 
-def calcSMA(data, period=5):
+def calcSMA(data, period=1):#used to be 5 now 1
     sma = data['Close'].rolling(window=period, min_periods=1).mean()
     return sma
 
-def vwap_greater_than_sma(vwap, sma):
+def vwap_greater_than_sma(vwap, sma): 
     if vwap > sma:
         return 1
     else:
@@ -176,10 +176,15 @@ def calcADX(data, period=14):
 
 #return 1 if adx > 25 else 0
 def adx_greater_than_25(adx):
-    if adx > 30:
+    if adx > 25:
         return 1
     else:
         return 0
+    
+
+    
+
+
     
     
 
@@ -197,6 +202,7 @@ for i in range(len(historical_data)):
     historical_data[i]['VWAP'] = calcVWAP(historical_data[i])
     historical_data[i]['SMA'] = calcSMA(historical_data[i])
     historical_data[i]['ADX'] = calcADX(historical_data[i])
+
 
 
 
@@ -235,6 +241,7 @@ for i in range(len(historical_data)):
         
         adx = row['ADX']
 
+
         
 
 
@@ -248,17 +255,17 @@ for i in range(len(historical_data)):
 
         total = KNNEMAX + RSIEMAX   + VWAPSMAX  + MACDSMAX
         table_data.append([index, closeValue, rsiValue, emaRsiValue, RSIEMAX, macdValue, signalValue, MACDSMAX, knn_ma, ema, KNNEMAX,
-                           vwap, sma, VWAPSMAX, adx, ADX25, total])
+                           vwap, sma, VWAPSMAX, adx, ADX25,  total])
 
 
 
-        if (total == 2 and x == 0) and ADX25 == 1:
+        if ((total == 2 and x == 0) and ADX25 == 1) :
             buyPrice = closeValue
             buyPriceArray.append(buyPrice)
             buyTime = index
             buyTimeArray.append(buyTime)
             x = 1
-        elif total < 1 and x == 1:
+        elif (total < 1 and x == 1) or (closeValue > buyPrice * 1000 and x == 1):
 
             sellPrice = closeValue
             sellPriceArray.append(sellPrice)
@@ -279,7 +286,29 @@ for i in range(len(historical_data)):
             profit_by_year[year].append(profit)
 
 
-headers = ["Date", "Close", "RSI", "EMA_RSI", "RSI > EMA_RSI", "MACD", "SIGNAL", "MACD > SIGNAL", "KNN_MA", "EMA", "EMA > KNN_MA", "VWAP", "SMA", "VWAP > SMA", "ADX", "ADX > 25", "Total"]
+            
+        elif closeValue < buyPrice * 0.01 and x == 1:
+            sellPrice = closeValue
+            sellPriceArray.append(sellPrice)
+            sellTime = index
+            sellTimeArray.append(sellTime)
+            profit = sellPrice - buyPrice
+            profitArray.append(profit)
+            if profit > 0:
+                total_gain.append(profit)
+            else:
+                total_loss.append(profit)
+            x = 0
+            
+            # Record profit by year
+            year = index.year
+            if year not in profit_by_year:
+                profit_by_year[year] = []
+            profit_by_year[year].append(profit)
+            
+
+
+headers = ["Date", "Close", "RSI", "EMA_RSI", "RSI > EMA_RSI", "MACD", "SIGNAL", "MACD > SIGNAL", "KNN_MA", "EMA", "EMA > KNN_MA", "VWAP", "SMA", "VWAP > SMA", "ADX", "ADX > 25", "SuperTrend", "SuperTrend > 0", "Total"]
 print(tabulate(table_data, headers=headers))    
 
 print("\n")
@@ -294,7 +323,11 @@ print("Total Trades: ", len(profitArray))
 
 
 
-'''
+
 for year in sorted(profit_by_year.keys()):
     print(f"{year}: {sum(profit_by_year[year])}")
-            '''
+
+if x == 1:
+    print ("Still holding")
+    print ("Buy Price: ", buyPrice) 
+            
