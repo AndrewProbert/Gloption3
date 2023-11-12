@@ -4,9 +4,9 @@ from tabulate import tabulate
 import pandas as pd
 import numpy as np
 
-ticker = 'spy'
+ticker = 'qqq'
 #period = "1000d"
-start_date = "2020-01-01"
+start_date = "2010-01-01"
 end_date = "2023-11-11"
 historical_data = []
 
@@ -182,10 +182,19 @@ def adx_greater_than_25(adx):
         return 0
     
 
-    
+def calcATR(data, period=14):
+    high_low = data['High'] - data['Low']
+    high_close = abs(data['High'] - data['Close'].shift())
+    low_close = abs(data['Low'] - data['Close'].shift())
+    true_range = pd.concat([high_low, high_close, low_close], axis=1).max(axis=1)
+    atr = true_range.rolling(window=period, min_periods=1).mean()
+    return atr
 
 
     
+
+
+
     
 
 for i in range(len(historical_data)):
@@ -202,6 +211,7 @@ for i in range(len(historical_data)):
     historical_data[i]['VWAP'] = calcVWAP(historical_data[i])
     historical_data[i]['SMA'] = calcSMA(historical_data[i])
     historical_data[i]['ADX'] = calcADX(historical_data[i])
+    atr_values = calcATR(historical_data[i])
 
 
 
@@ -225,8 +235,20 @@ for i in range(len(historical_data)):
     total_gain = []
     total_loss = []
     profit_by_year = {}
+    highestTradePrice = 0
+
 
     for index, row in historical_data[i].iterrows():
+        if (x == 1) and (closeValue > highestTradePrice):
+            highestTradePrice = closeValue
+            #print("Highest Trade Price: ", highestTradePrice)
+
+        atr_value = atr_values.loc[index]
+
+
+
+
+
         total = 0
         closeValue = row['Close']
         volumeValue = row['Volume']
@@ -265,7 +287,7 @@ for i in range(len(historical_data)):
             buyTime = index
             buyTimeArray.append(buyTime)
             x = 1
-        elif (total < 1 and x == 1) or (closeValue > buyPrice * 1000 and x == 1):
+        elif (total < 1 and x == 1) or (closeValue > buyPrice * 1.5 and x == 1):
 
             sellPrice = closeValue
             sellPriceArray.append(sellPrice)
@@ -277,6 +299,7 @@ for i in range(len(historical_data)):
                 total_gain.append(profit)
             else:
                 total_loss.append(profit)
+            
             x = 0
             
             # Record profit by year
@@ -305,6 +328,50 @@ for i in range(len(historical_data)):
             if year not in profit_by_year:
                 profit_by_year[year] = []
             profit_by_year[year].append(profit)
+        '''
+
+           # Check for ATR stop loss
+        if x == 1 and closeValue < buyPrice - 1.45 * atr_value:  # You can adjust the multiplier as needed
+            sellPrice = closeValue
+            sellPriceArray.append(sellPrice)
+            sellTime = index
+            sellTimeArray.append(sellTime)
+            profit = sellPrice - buyPrice
+            profitArray.append(profit)
+            if profit > 0:
+                total_gain.append(profit)
+            else:
+                total_loss.append(profit)
+            x = 0
+            highestTradePrice = 0
+            print("Stopped out with ATR stop loss")
+        '''
+        
+
+
+        
+
+        if (x == 1) and (closeValue < highestTradePrice * 0.0):
+            sellPrice = closeValue
+            sellPriceArray.append(sellPrice)
+            sellTime = index
+            sellTimeArray.append(sellTime)
+            profit = sellPrice - buyPrice
+            profitArray.append(profit)
+            if profit > 0:
+                total_gain.append(profit)
+            else:
+                total_loss.append(profit)
+            x = 0
+            highestTradePrice = 0
+            
+            # Record profit by year
+            year = index.year
+            if year not in profit_by_year:
+                profit_by_year[year] = []
+            profit_by_year[year].append(profit)
+            
+
             
 
 
@@ -329,5 +396,7 @@ for year in sorted(profit_by_year.keys()):
 
 if x == 1:
     print ("Still holding")
-    print ("Buy Price: ", buyPrice) 
+    print ("Buy Price: ", buyPrice, "Buy Time: ", buyTime)
+    print ("Current Price: ", closeValue, "Current Time: ", index, "Additional Profit: ", closeValue - buyPrice)
+    print ("Total Profit: ", sum(profitArray) + closeValue - buyPrice)  
             
