@@ -4,9 +4,9 @@ from tabulate import tabulate
 import pandas as pd
 import numpy as np
 
-ticker = 'qqq'
+ticker = 'spy'
 #period = "1000d"
-start_date = "2010-01-01"
+start_date = "2015-11-05"
 end_date = "2023-11-11"
 historical_data = []
 
@@ -57,7 +57,6 @@ def ema_greater_than_knn(ema, knn_ma):
         return 1
     else:
         return 0
-
 
 
 ma_len = 50
@@ -117,7 +116,6 @@ def calculate_knn_prediction(price_values, ma_len, num_closest_values=3, smoothi
 
     knn_predictions = [knn_prediction(price_values[i], knn_ma[i - smoothing_period:i], knn_smoothed[i - smoothing_period:i])
                        for i in range(smoothing_period, len(price_values))]
-
     return knn_predictions
 
 
@@ -190,22 +188,35 @@ def calcATR(data, period=14):
     atr = true_range.rolling(window=period, min_periods=1).mean()
     return atr
 
-def calcStoch(data, period=14):
-    data['L14'] = data['Low'].rolling(window=period, min_periods=1).min()
-    data['H14'] = data['High'].rolling(window=period, min_periods=1).max()
-    data['%K'] = 100 * (data['Close'] - data['L14']) / (data['H14'] - data['L14'])
+
+def maCrossOver(data, period1 = 9, period2 = 21):
+    data['MA1'] = data['Close'].rolling(window=period1, min_periods=1).mean()
+    data['MA2'] = data['Close'].rolling(window=period2, min_periods=1).mean()
+    data['MA_Crossover'] = np.where(data['MA1'] > data['MA2'], 1, 0)
+    return data['MA_Crossover']
+
+def stochastic(data, period=14):
+    data['14-high'] = data['High'].rolling(window=period, min_periods=1).max()
+    data['14-low'] = data['Low'].rolling(window=period, min_periods=1).min()
+    data['%K'] = 100 * (data['Close'] - data['14-low']) / (data['14-high'] - data['14-low'])
     data['%D'] = data['%K'].rolling(window=3, min_periods=1).mean()
     return data['%K'], data['%D']
 
-def stoch_greater_than_20(stoch):
-    if stoch > 20:
+
+def calcAroon(data, period=25):
+    data['25-high'] = data['High'].rolling(window=period, min_periods=1).max()
+    data['25-low'] = data['Low'].rolling(window=period, min_periods=1).min()
+    data['Aroon Up'] = 100 * (data['25-high'] - data['Close']) / period
+    data['Aroon Down'] = 100 * (data['25-low'] - data['Close']) / period
+    return data['Aroon Up'], data['Aroon Down']
+
+#check if aroon up is greater than aroon down
+def aroon_up_greater_than_aroon_down(aroon_up, aroon_down):
+    if aroon_up > aroon_down:
         return 1
     else:
         return 0
 
-
-
-    
 
 for i in range(len(historical_data)):
     print (historical_data[i])
@@ -222,7 +233,15 @@ for i in range(len(historical_data)):
     historical_data[i]['SMA'] = calcSMA(historical_data[i])
     historical_data[i]['ADX'] = calcADX(historical_data[i])
     atr_values = calcATR(historical_data[i])
-    stoch = calcStoch(historical_data[i])
+    aroonUp, aroonDown = calcAroon(historical_data[i])
+    historical_data[i]['Aroon Up'] = aroonUp
+    historical_data[i]['Aroon Down'] = aroonDown
+
+
+  
+
+
+
 
 
 
@@ -274,8 +293,13 @@ for i in range(len(historical_data)):
         sma = row['SMA']
         
         adx = row['ADX']
-        stoch_d = row['%D']
-        stoch_d_greater_than_20 = stoch_greater_than_20(stoch_d)
+
+        aroonUp = row['Aroon Up']
+        aroonDown = row['Aroon Down']
+        
+        
+
+
         
 
 
@@ -289,20 +313,23 @@ for i in range(len(historical_data)):
         KNNEMAX = ema_greater_than_knn(ema, knn_ma)
         VWAPSMAX = vwap_greater_than_sma(vwap, sma)
         ADX25 = adx_greater_than_25(adx)
+        MACROSS = maCrossOver(historical_data[i])
+        AROONUP = aroon_up_greater_than_aroon_down(aroonUp, aroonDown)
+            
 
-        total = KNNEMAX + RSIEMAX   + VWAPSMAX  + MACDSMAX + ADX25 + stoch_d_greater_than_20
+        total = KNNEMAX + RSIEMAX   + VWAPSMAX  + MACDSMAX
         table_data.append([index, closeValue, rsiValue, emaRsiValue, RSIEMAX, macdValue, signalValue, MACDSMAX, knn_ma, ema, KNNEMAX,
                            vwap, sma, VWAPSMAX, adx, ADX25,  total])
 
 
-
-        if ((total == 2 and x == 0) and ADX25 == 1) :
+        #use and (MACROSS[index] == 1) for leveraged
+        if ((total == 2 and x == 0) and ADX25 == 1):
             buyPrice = closeValue
             buyPriceArray.append(buyPrice)
             buyTime = index
             buyTimeArray.append(buyTime)
             x = 1
-        elif (total < 1 and x == 1) or (closeValue > buyPrice * 1.5 and x == 1):
+        elif (total < 1 and x == 1) or (closeValue > buyPrice * 1.5 and x == 1) :
 
             sellPrice = closeValue
             sellPriceArray.append(sellPrice)
@@ -343,6 +370,7 @@ for i in range(len(historical_data)):
             if year not in profit_by_year:
                 profit_by_year[year] = []
             profit_by_year[year].append(profit)
+
         '''
 
            # Check for ATR stop loss
@@ -359,9 +387,15 @@ for i in range(len(historical_data)):
                 total_loss.append(profit)
             x = 0
             highestTradePrice = 0
+                        # Record profit by year
+            year = index.year
+            if year not in profit_by_year:
+                profit_by_year[year] = []
+            profit_by_year[year].append(profit)
+            
             print("Stopped out with ATR stop loss")
-        '''
         
+    '''
 
 
         
@@ -385,7 +419,9 @@ for i in range(len(historical_data)):
             if year not in profit_by_year:
                 profit_by_year[year] = []
             profit_by_year[year].append(profit)
-            
+
+
+
 
             
 
@@ -414,4 +450,13 @@ if x == 1:
     print ("Buy Price: ", buyPrice, "Buy Time: ", buyTime)
     print ("Current Price: ", closeValue, "Current Time: ", index, "Additional Profit: ", closeValue - buyPrice)
     print ("Total Profit: ", sum(profitArray) + closeValue - buyPrice)  
-            
+
+
+    # Count the number of profitable trades
+    num_profitable_trades = sum(profit > 0 for profit in profitArray)
+
+    # Calculate the success rate
+    success_rate = num_profitable_trades / len(profitArray)
+
+    # Print the success rate
+    print("Success rate: {:.2%}".format(success_rate))
