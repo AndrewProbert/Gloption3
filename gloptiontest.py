@@ -4,9 +4,9 @@ from tabulate import tabulate
 import pandas as pd
 import numpy as np
 
-ticker = 'spy'
+ticker = 'qqq'
 #period = "1000d"
-start_date = "2022-11-05"
+start_date = "1999-11-05"
 end_date = "2023-11-11"
 historical_data = []
 
