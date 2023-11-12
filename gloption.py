@@ -11,7 +11,7 @@ import os
 ticker_symbol = ['spy']
 period = "600d"
 start_date = "2021-01-01"
-end_date = "2023-10-12"
+end_date = "2023-11-11"
 historical_data = []
 
 for i in ticker_symbol:

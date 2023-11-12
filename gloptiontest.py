@@ -6,7 +6,7 @@ import numpy as np
 
 ticker = 'spy'
 #period = "1000d"
-start_date = "2015-11-05"
+start_date = "2022-11-05"
 end_date = "2023-11-11"
 historical_data = []
 
@@ -18,7 +18,7 @@ historical_data.append(data)
 
 
 
-def calcRsi(data, column='Close', period=30, ema_period=14):
+def calcRsi(data, column='Close', period=30, ema_period=21):
     delta = data[column].diff(1)
     gain = delta.where(delta > 0, 0)
     loss = -delta.where(delta < 0, 0)
@@ -59,8 +59,8 @@ def ema_greater_than_knn(ema, knn_ma):
         return 0
 
 
-ma_len = 50
-ema_len_5 = 15
+ma_len = 21
+ema_len_5 = 5
 
 def calculate_knn_ma(price_values, ma_len):
     knn_ma = [np.mean(price_values[i-ma_len:i]) for i in range(ma_len, len(price_values))]
@@ -206,8 +206,8 @@ def stochastic(data, period=14):
 def calcAroon(data, period=25):
     data['25-high'] = data['High'].rolling(window=period, min_periods=1).max()
     data['25-low'] = data['Low'].rolling(window=period, min_periods=1).min()
-    data['Aroon Up'] = 100 * (data['25-high'] - data['Close']) / period
-    data['Aroon Down'] = 100 * (data['25-low'] - data['Close']) / period
+    data['Aroon Up'] = 14 * (data['25-high'] - data['Close']) / period
+    data['Aroon Down'] = 14 * (data['25-low'] - data['Close']) / period
     return data['Aroon Up'], data['Aroon Down']
 
 #check if aroon up is greater than aroon down
@@ -216,6 +216,76 @@ def aroon_up_greater_than_aroon_down(aroon_up, aroon_down):
         return 1
     else:
         return 0
+    
+
+def price_greater_than_sma(price, sma):
+    if price > sma:
+        return 1
+    else:
+        return 0
+    
+
+def calcSuperTrend(data, period=10, multiplier=3):
+    data['ATR'] = calcATR(data, period)
+    data['Upper Basic'] = (data['High'] + data['Low']) / 2 + multiplier * data['ATR']
+    data['Lower Basic'] = (data['High'] + data['Low']) / 2 - multiplier * data['ATR']
+    data['Upper Band'] = data['Upper Basic']
+    data['Lower Band'] = data['Lower Basic']
+    for i in range(period, len(data)):
+        if data['Close'][i-1] <= data['Upper Band'][i-1]:
+            data['Upper Band'][i] = min(data['Upper Basic'][i], data['Upper Band'][i-1])
+        else:
+            data['Upper Band'][i] = data['Upper Basic'][i]
+    for i in range(period, len(data)):
+        if data['Close'][i-1] >= data['Lower Band'][i-1]:
+            data['Lower Band'][i] = max(data['Lower Basic'][i], data['Lower Band'][i-1])
+        else:
+            data['Lower Band'][i] = data['Lower Basic'][i]
+    data['SuperTrend'] = 0
+    for i in range(period, len(data)):
+        if data['Close'][i] <= data['Upper Band'][i]:
+            data['SuperTrend'][i] = data['Upper Band'][i]
+        elif data['Close'][i] > data['Upper Band'][i]:
+            data['SuperTrend'][i] = data['Lower Band'][i]
+    data['SuperTrend Direction'] = np.where(data['SuperTrend'] > data['SuperTrend'].shift(), 1, 0)
+    return data['SuperTrend'], data['SuperTrend Direction']
+
+#if supertrend is bullish return 1 else 0
+def supertrend_greater_than_0(supertrend):
+    if supertrend > 0:
+        return 1
+    else:
+        return 0
+    
+
+def calcCCI(data, period=20):
+    data['TP'] = (data['High'] + data['Low'] + data['Close']) / 3
+    data['MA'] = data['TP'].rolling(window=period, min_periods=1).mean()
+    data['MD'] = data['TP'].rolling(window=period, min_periods=1).std()
+    data['CCI'] = (data['TP'] - data['MA']) / (0.015 * data['MD'])
+    return data['CCI']
+
+def CCI_greater_than_100(CCI):
+    if CCI > 100:
+        return 1
+    else:
+        return 0
+    
+def fibonnaci_levels(data):
+    data['High-Low'] = data['High'] - data['Low']
+    data['38.2%'] = data['High'] - data['High-Low'] * 0.382
+    data['50.0%'] = data['High'] - data['High-Low'] * 0.5
+    data['61.8%'] = data['High'] - data['High-Low'] * 0.618
+    
+    return data['38.2%'], data['50.0%'], data['61.8%']
+
+def calc_fib_bullish(data):
+    if data['Close'] > data['38.2%'] and data['Close'] > data['50.0%'] and data['Close'] > data['61.8%']:
+        return 1
+    else:
+        return 0
+
+    
 
 
 for i in range(len(historical_data)):
@@ -236,6 +306,15 @@ for i in range(len(historical_data)):
     aroonUp, aroonDown = calcAroon(historical_data[i])
     historical_data[i]['Aroon Up'] = aroonUp
     historical_data[i]['Aroon Down'] = aroonDown
+    #superTrend, superTrendDirection = calcSuperTrend(historical_data[i])
+    #historical_data[i]['SuperTrend'] = superTrend
+    #historical_data[i]['SuperTrend Direction'] = superTrendDirection
+    historical_data[i]['CCI'] = calcCCI(historical_data[i])
+    cci = historical_data[i]['CCI'] 
+    historical_data[i]['38.2%'], historical_data[i]['50.0%'], historical_data[i]['61.8%'] = fibonnaci_levels(historical_data[i])
+    historical_data[i]['Fib Bullish'] = historical_data[i].apply(calc_fib_bullish, axis=1)
+
+
 
 
   
@@ -281,6 +360,7 @@ for i in range(len(historical_data)):
 
 
         total = 0
+        openValue = row['Open']
         closeValue = row['Close']
         volumeValue = row['Volume']
         rsiValue = row['RSI']
@@ -296,6 +376,13 @@ for i in range(len(historical_data)):
 
         aroonUp = row['Aroon Up']
         aroonDown = row['Aroon Down']
+        #superTrend = row['SuperTrend']
+        #superTrendDirection = row['SuperTrend Direction']
+        cci = row['CCI']
+        fibBullish = row['Fib Bullish']
+
+
+
         
         
 
@@ -315,15 +402,18 @@ for i in range(len(historical_data)):
         ADX25 = adx_greater_than_25(adx)
         MACROSS = maCrossOver(historical_data[i])
         AROONUP = aroon_up_greater_than_aroon_down(aroonUp, aroonDown)
+        #SUPERX = supertrend_greater_than_0(superTrend)
+        CCIX = CCI_greater_than_100(cci)
+        FIBBULL = fibBullish
             
 
-        total = KNNEMAX + RSIEMAX   + VWAPSMAX  + MACDSMAX
+        total = KNNEMAX + RSIEMAX   + VWAPSMAX  + MACDSMAX 
         table_data.append([index, closeValue, rsiValue, emaRsiValue, RSIEMAX, macdValue, signalValue, MACDSMAX, knn_ma, ema, KNNEMAX,
                            vwap, sma, VWAPSMAX, adx, ADX25,  total])
 
 
         #use and (MACROSS[index] == 1) for leveraged
-        if ((total == 2 and x == 0) and ADX25 == 1):
+        if ((total == 2 and x == 0) and ADX25 == 1) and (FIBBULL == 0): 
             buyPrice = closeValue
             buyPriceArray.append(buyPrice)
             buyTime = index
@@ -422,8 +512,7 @@ for i in range(len(historical_data)):
 
 
 
-
-            
+                    
 
 
 headers = ["Date", "Close", "RSI", "EMA_RSI", "RSI > EMA_RSI", "MACD", "SIGNAL", "MACD > SIGNAL", "KNN_MA", "EMA", "EMA > KNN_MA", "VWAP", "SMA", "VWAP > SMA", "ADX", "ADX > 25", "SuperTrend", "SuperTrend > 0", "Total"]
@@ -460,3 +549,5 @@ if x == 1:
 
     # Print the success rate
     print("Success rate: {:.2%}".format(success_rate))
+
+    
