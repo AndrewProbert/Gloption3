@@ -1,6 +1,7 @@
 import yfinance as yf
 import numpy as np
 from tabulate import tabulate
+import pandas as pd
 
 def ema_greater_than_knn(ema, knn_ma):
     if ema > knn_ma:
@@ -9,8 +10,7 @@ def ema_greater_than_knn(ema, knn_ma):
         return 0
 
 
-ma_len = 5
-ema_len_5 = 5
+
 
 
 
@@ -82,6 +82,58 @@ def calculate_knn_prediction(price_values, ma_len, num_closest_values=3, smoothi
                        for i in range(smoothing_period, len(price_values))]
     return knn_predictions
 
+sma_len = 9 
+
+def calculate_sma(price_values, sma_len):
+    sma = [np.mean(price_values[i-sma_len:i]) for i in range(sma_len, len(price_values))]
+    sma = [0]*sma_len + sma
+    return sma
+
+
+def calcMACD(data, short_period=10, long_period=20, signal_period=9):
+    short_ema = calcEMA(data, short_period)
+    long_ema = calcEMA(data, long_period)
+
+    macd = [short - long for short, long in zip(short_ema, long_ema)]
+
+    signal = calcEMA(macd, signal_period)
+
+    return macd, signal
+
+def calcEMA(data, period):
+    multiplier = 2 / (period + 1)
+    ema = [data[0]]
+
+    for i in range(1, len(data)):
+        ema_val = (data[i] - ema[-1]) * multiplier + ema[-1]
+        ema.append(ema_val)
+
+    return ema    
+
+def macdCross(macd, signal):
+    if macd > signal:
+        return 1
+    else:
+        return 0
+
+
+def stoch(data, period=50):
+    
+    
+    stoch = [np.nan]*period
+    for i in range(period, len(data)):
+        high = max(data[i-period:i])
+        low = min(data[i-period:i])
+        stoch.append((data[i] - low) / (high - low))
+    return stoch
+
+def calcVWAP(data, volume, period=50):
+    vwap = [np.nan]*period
+    for i in range(period, len(data)):
+        vwap.append(sum(data[i-period:i]*volume[i-period:i]) / sum(volume[i-period:i]))
+    return vwap
+
+
 
 #Ticker Detailss
 historical_data = []
@@ -99,25 +151,38 @@ profitArray = []
 positive = []
 negative = []
 profit_by_year = {}
+capitalArray = []
 
 
-ticker = yf.Ticker('aapl')
-start_date = "2010-11-05"
-end_date = "2023-11-11"
-data = ticker.history(start=start_date, end=end_date, interval="1d")
+ticker = yf.Ticker('tqqq')
+start_date = "2022-12-07"
+end_date = "2023-11-13"
+data = ticker.history(start=start_date, end=end_date, interval="1h") #could try doing hourly with confirmation on daily or weekly
 historical_data.append(data)
 
+
+#Getting weekly data 
+weekly_data = []
+weekData = ticker.history(start=start_date, end=end_date, interval="1wk")
+weekly_data.append(weekData)
 
 
 
 
 
 for i in range(len(historical_data)):
+    ma_len = 5
+    ema_len_5 = 9
     historical_data[i]['EMA_5'] = calculate_ema(historical_data[i]['Close'], ema_len_5)
     historical_data[i]['KNN_MA'] = calculate_knn_ma(historical_data[i]['Close'], ma_len)
+    historical_data[i]['SMA'] = calculate_sma(historical_data[i]['Close'], sma_len)
+    historical_data[i]['MACD'], historical_data[i]['Signal'] = calcMACD(historical_data[i]['Close'])
+    historical_data[i]['STOCH'] = stoch(historical_data[i]['Close'])
+    historical_data[i]['VWAP'] = calcVWAP(historical_data[i]['Close'], historical_data[i]['Volume'])
 
 
     table = []
+    capital = 1000
 
     for index, row in historical_data[i].iterrows():
         
@@ -127,21 +192,39 @@ for i in range(len(historical_data)):
         volume = row['Volume']
         ema = row['EMA_5']
         knn_ma = row['KNN_MA']
+        sma = row['SMA']
+        MACD = row['MACD']
+        Signal = row['Signal']
+        MACDConverge = macdCross(MACD, Signal)
+        stoch_momentum = row['STOCH']
+        vwap = row['VWAP']
+      
 
 
-        if ema != None and knn_ma != None:
+
+
+
+        if ema != None and knn_ma != None and sma != None and MACD != None and Signal != None and vwap != None:
             KnnEmaX = ema_greater_than_knn(ema, knn_ma)
+            TrendConfirmation = ema_greater_than_knn(ema, sma)
+
         else:
             KnnEmaX = None
+            TrendConfirmation = None
+            MACDConverge = None
+            stoch_momentum = None
 
 
 
-        if (KnnEmaX == 1) and (tradeOpen == False):
+        if (KnnEmaX == 1) and (tradeOpen == False) and (TrendConfirmation == 1) and (MACDConverge == 1) and (vwap < close_price * 1.01):
             buyPrice = close_price
             buyTime = date
             tradeOpen = True
-            print("Buy at: ", buyPrice, "on: ", buyTime)
-        elif ((KnnEmaX == 0) and (tradeOpen == True)):
+            shares = capital / buyPrice
+
+            print("Buy at: ", buyPrice, "on: ", buyTime, "Shares: ", shares)
+            
+        elif ((KnnEmaX == 0) and (tradeOpen == True) and (TrendConfirmation == 0) ):
             sellPrice = close_price
             sellTime = date
             tradeOpen = False
@@ -153,6 +236,10 @@ for i in range(len(historical_data)):
             buyTimeArray.append(buyTime)
             sellTimeArray.append(sellTime)
             profitArray.append(profit)
+
+            capital = shares * sellPrice
+            capitalArray.append(capital)
+            
 
             if profit > 0:
                 positive.append(profit)
@@ -172,31 +259,32 @@ for i in range(len(historical_data)):
 
 
 
-        table.append([date, open_price, close_price, volume, ema, knn_ma, KnnEmaX])
 
-header = ['Date', 'Open', 'Close', 'Volume', 'EMA_5', 'KNN_MA', 'KnnEmaX']
+
+        table.append([date, open_price, close_price, volume, ema, knn_ma, KnnEmaX, sma])
+
+header = ['Date', 'Open', 'Close', 'Volume', 'EMA_5', 'KNN_MA', 'KnnEmaX', 'SMA']
 print(tabulate(table, headers=header, tablefmt='orgtbl'))
 
 
 
 print("\n")
-headers = ["Buy Price", "Buy Time", "Sell Price", "Sell Time", "Profit"]
-data = list(zip(buyPriceArray, buyTimeArray, sellPriceArray, sellTimeArray, profitArray))
+headers = ["Buy Price", "Buy Time", "Sell Price", "Sell Time", "Profit", "Capital"]
+data = list(zip(buyPriceArray, buyTimeArray, sellPriceArray, sellTimeArray, profitArray, capitalArray))
 print(tabulate(data, headers=headers))
 print("Total Profit: ", sum(profitArray))
 print("Total Trades: ", len(profitArray))
 print("Positive Trades: ", len(positive))
 print("Negative Trades: ", len(negative))
-print("Suceess Rate: ", len(positive)/len(profitArray)*100, "%")
+print("Success Rate: ", len(positive)/len(profitArray)*100, "%")
 
-#for year in profit_by_year:
- #   print("Year", year, "Profit:", sum(profit_by_year[year]))
-
-
-
+print(capital)
+for year in profit_by_year:
+    print("Year", year, "Profit:", sum(profit_by_year[year]))
 
 
-
+if tradeOpen == True:
+    print("Trade Open", buyPrice, buyTime)
 
 
 

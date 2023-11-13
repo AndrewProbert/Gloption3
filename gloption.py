@@ -8,9 +8,9 @@ from datetime import datetime
 import os
 
 
-ticker_symbol = ['spy']
+ticker_symbol = ['tqqq']
 period = "600d"
-start_date = "2021-01-01"
+start_date = "2023-08-01"
 end_date = "2023-11-11"
 historical_data = []
 
@@ -268,7 +268,7 @@ for i in tqdm(range(len(historical_data[0]))):
         
 
 
-    total.append(rsiemaX + macdX  + knnemaX + smaemaX)
+    total.append(rsiemaX + macdX   + smaemaX)
     totalDiff = total[i] - total[i - 1]
 
     

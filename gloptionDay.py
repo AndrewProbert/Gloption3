@@ -13,7 +13,7 @@ def run_program(end_date):
     ticker_symbol = ['tqqq']
 
     end_date = datetime.strptime(end_date, '%Y-%m-%d')
-    start_date = '2023-02-01'
+    start_date = '2022-12-01'
     period = "100d"
     historical_data = []
 
@@ -335,7 +335,7 @@ def run_program(end_date):
 
 
 # Start the program with the initial end_date
-end_date = "2023-08-11"
+end_date = "2023-11-11"
 run_program(end_date)
 
 # Allow the user to increment the end_date and rerun the program by pressing enter

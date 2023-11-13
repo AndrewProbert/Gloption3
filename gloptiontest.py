@@ -4,9 +4,9 @@ from tabulate import tabulate
 import pandas as pd
 import numpy as np
 
-ticker = 'qqq'
+ticker = 'tqqq'
 #period = "1000d"
-start_date = "1999-11-05"
+start_date = "2021-12-05"
 end_date = "2023-11-11"
 historical_data = []
 
@@ -328,7 +328,8 @@ for i in range(len(historical_data)):
 
 
 
-
+    capital = 1000
+    capital_array = []
 
     x = 0
     buyPrice =0
@@ -419,6 +420,8 @@ for i in range(len(historical_data)):
             buyTime = index
             buyTimeArray.append(buyTime)
             x = 1
+            shares = capital / buyPrice
+
         elif (total < 1 and x == 1) or (closeValue > buyPrice * 1.5 and x == 1) :
 
             sellPrice = closeValue
@@ -433,12 +436,17 @@ for i in range(len(historical_data)):
                 total_loss.append(profit)
             
             x = 0
+
+
             
             # Record profit by year
             year = index.year
             if year not in profit_by_year:
                 profit_by_year[year] = []
             profit_by_year[year].append(profit)
+
+            capital = shares * sellPrice
+            capital_array.append(capital)
 
 
             
@@ -519,14 +527,14 @@ headers = ["Date", "Close", "RSI", "EMA_RSI", "RSI > EMA_RSI", "MACD", "SIGNAL",
 print(tabulate(table_data, headers=headers))    
 
 print("\n")
-headers = ["Buy Price", "Buy Time", "Sell Price", "Sell Time", "Profit"]
-data = list(zip(buyPriceArray, buyTimeArray, sellPriceArray, sellTimeArray, profitArray))
+headers = ["Buy Price", "Buy Time", "Sell Price", "Sell Time", "Profit", "Capital"]
+data = list(zip(buyPriceArray, buyTimeArray, sellPriceArray, sellTimeArray, profitArray, capital_array))
 print(tabulate(data, headers=headers))
 print("Total Profit: ", sum(profitArray))
 print("Total Gain: ", sum(total_gain))
 print("Total Loss: ", sum(total_loss))
 print("Total Trades: ", len(profitArray))
-
+print("Total Capital: ", capital)
 
 
 
